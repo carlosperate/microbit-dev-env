@@ -1,6 +1,9 @@
 # Vagrant
 .vagrant/
 
+# Vagrant shared folder
+vagrant_shared/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

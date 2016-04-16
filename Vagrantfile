@@ -27,9 +27,10 @@ Vagrant.configure("2") do |config|
   end
 
   # Share an additional folder to the guest VM. The first argument is
-  # an identifier, the second is the path on the guest to mount the
-  # folder, and the third is the path on the host to the actual folder.
-  #config.vm.share_folder "v-root", "/home/vagrant/app-name", "", :nfs => true
+  # the path on the host to the actual folder. The second argument is
+  # the path on the guest to mount the folder. And the optional third
+  # argument is a set of non-required options.
+  config.vm.synced_folder "vagrant_shared", "/home/vagrant/shared_folder"
 
   # Shell provision to install dependencies
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
@@ -51,12 +52,23 @@ Vagrant.configure("2") do |config|
     echo "Installing yotta..."
     sudo -H pip install yotta
     echo "Cloning MicroPython repository..."
+    cd shared_folder
     git clone https://github.com/bbcmicrobit/micropython.git
-    echo "All done! execute 'vagrant ssh' to enter the virtual machine and continue the yotta"
-    echo "configuration as defined in the README.md file, execute:"
-    echo "  yt target bbc-microbit-classic-gcc-nosd"
-    echo "  yt up"
-    echo "  yt build"
+    echo "Cloning uFlash repository..."
+    git clone https://github.com/ntoll/uflash.git
+    echo "Cloning microREPL..."
+    sudo pip install pyserial
+    git clone https://github.com/ntoll/microrepl.git
+    echo "Configuring yotta..."
+    cd micropython
+    echo "***************************************************************************************"
+    echo "*                                                                                     *"
+    echo "* PLESE NOTE: You need to signin to your mbed account, click the link printed below ! *"
+    echo "*                                                                                     *"
+    echo "***************************************************************************************"
+    yt target bbc-microbit-classic-gcc-nosd
+    yt up
+    echo "All done! execute 'vagrant ssh' to enter the virtual machine and build with 'yt build'"
   SHELL
 end
 
