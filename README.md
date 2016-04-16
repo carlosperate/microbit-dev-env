@@ -1,7 +1,7 @@
 # BBC micro:bit MicroPython Development Environment
 This repository contains a Vagrant script to facilitate the development of MicroPython for the BBC micro:bit.
 
-This takes care of creating a virtual machine, installing all the development tools required, and get everything ready to compile.
+This takes care of creating a virtual machine, installing all the development tools required, and get everything ready to compile. This useful tool offers a replicable development environment independent of your operating system, working the same way under Windows, OS X, or Linux.
 
 
 ## Prerequisites
@@ -83,7 +83,7 @@ python load_upy.py vagrant_shared/micropython/examples/conway.py
 
 
 ## Access the MicroPython REPL
-Once MicroPython is flashed, you will have access to the REPL on the USB CDC serial port, with baudrate 115200 (eg picocom /dev/ttyACM0 -b 115200).
+Once MicroPython is flashed, you will have access to the REPL on the USB CDC serial port, with baudrate 115200 (eg `picocom /dev/ttyACM0 -b 115200` on Linux, `screen /dev/tty.usbmodem* 115200` on OS X, or a tool like putty on Windows).
 
 If you have the python package PySerial installed (`pip install pyserial`), you can also use [microrepl](https://github.com/ntoll/microrepl), which is already included:
 
@@ -91,9 +91,16 @@ If you have the python package PySerial installed (`pip install pyserial`), you 
 python vagrant_shared/microrepl/microrepl.py
 ```
 
-If you are running Windows you might need to install the microbit driver, you can find it at: https://developer.mbed.org/handbook/Windows-serial-configuration
+If you are running Windows you might need to install the microbit driver, which can be found at: https://developer.mbed.org/handbook/Windows-serial-configuration
+
+
+## Workflow
+The general idea for the workflow using this Vagrant virtual machine is to do the builds on the vm, while being able to access the source code and work with your preferred tools on your host operating system.
+
+So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host and guest vm. This is a directory that can be accessed and edited by both systems. The host location for this folder is `~/shared_folder` and this is where the MicroPython, and the microrepl and uflash utilities have been downloaded as git repositories.
 
 
 ## Trademarks
 This projects is not endorsed, sponsored or associated with the BBC.
 "BBC” and “micro:bit” are trade marks of the BBC. http://microbit.co.uk/
+	
