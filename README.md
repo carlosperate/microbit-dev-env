@@ -95,12 +95,19 @@ If you are running Windows you might need to install the microbit driver, which 
 
 
 ## Workflow
-The general idea for the workflow using this Vagrant virtual machine is to do the builds on the vm, while being able to access the source code and work with your preferred tools on your host operating system.
+The general workflow concept for this Vagrant virtual machine is to be able do the compilation on the vm, while accessing and work on the source code with your preferred tools on your host operating system.
 
-So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host and guest vm. This is a directory that can be accessed and edited by both systems. The host location for this folder is `~/shared_folder` and this is where the MicroPython, and the microrepl and uflash utilities have been downloaded as git repositories.
+So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host and guest vm. The host location for this folder is `~/shared_folder` and this is where the MicroPython source code, and the microrepl and uflash utilities, have been downloaded as git repository clones.
+
+To close the virtual machine from running on the background, you can use the following command:
+
+```
+vagrant halt
+```
+
+More information can be found in the [Vagrant documentation](https://www.vagrantup.com/docs/).
 
 
 ## Trademarks
 This projects is not endorsed, sponsored or associated with the BBC.
 "BBC” and “micro:bit” are trade marks of the BBC. http://microbit.co.uk/
-	

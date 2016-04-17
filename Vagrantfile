@@ -5,14 +5,14 @@ Vagrant.configure("2") do |config|
   # Building from Ubuntu 14.04 32 bit base
   config.vm.box = "ubuntu/trusty32"
 
-  # Adding a regnisable names to vagrant and the virtual machine
-  config.vm.define "microbit-mupython-vg" do |t|
+  # Adding a recognisable names to vagrant and the virtual machine
+  config.vm.define "microbit-upy-vg" do |t|
   end
   config.vm.provider "virtualbox" do |v|
-    v.name = "microbit-mupython-vm"
+    v.name = "microbit-upy-vm"
   end
 
-  # Boot with a GUI so you can see the screen. (Default is headless)
+  # Uncomment this line to boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
 
   # Assign the virtual machine settings according to your host computer capabilities.
@@ -68,7 +68,6 @@ Vagrant.configure("2") do |config|
     echo "***************************************************************************************"
     yt target bbc-microbit-classic-gcc-nosd
     yt up
-    echo "All done! execute 'vagrant ssh' to enter the virtual machine and build with 'yt build'"
+    echo "All done! execute 'vagrant ssh' to enter the virtual machine and build with 'cd shared_folder/micropython && yt build'"
   SHELL
 end
-
