@@ -26,11 +26,10 @@ Vagrant.configure("2") do |config|
     v.cpus = cpu_count > 0 ? cpu_count: 1
   end
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  config.vm.synced_folder "vagrant_shared", "/home/vagrant/shared_folder"
+  # Share an additional folders to the guest VM. The first argument is the path on the host to the
+  # actual folder. The second argument is the path on the guest to mount the folder. And the
+  # optional third argument is a set of non-required options.
+  config.vm.synced_folder "vagrant_shared", "/home/vagrant/vagrant_shared"
 
   # Shell provision to install dependencies
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
@@ -51,23 +50,31 @@ Vagrant.configure("2") do |config|
     arm-none-eabi-gcc --version
     echo "Installing yotta..."
     sudo -H pip install yotta
+
+    cd vagrant_shared
+    echo "Cloning C++ Examples"
+    git clone https://github.com/lancaster-university/microbit-samples.git cpp-samples
     echo "Cloning MicroPython repository..."
-    cd shared_folder
     git clone https://github.com/bbcmicrobit/micropython.git
     echo "Cloning uFlash repository..."
     git clone https://github.com/ntoll/uflash.git
     echo "Cloning microREPL..."
     sudo pip install pyserial
     git clone https://github.com/ntoll/microrepl.git
+
     echo "Configuring yotta..."
-    cd micropython
-    echo "***************************************************************************************"
-    echo "*                                                                                     *"
-    echo "* PLESE NOTE: You need to signin to your mbed account, click the link printed below ! *"
-    echo "*                                                                                     *"
-    echo "***************************************************************************************"
+    cd cpp-samples
+    echo "**************************************************************************************"
+    echo "*                                                                                    *"
+    echo "* PLESE NOTE: You need to signin to your mbed account, open the link printed below ! *"
+    echo "*                                                                                    *"
+    echo "**************************************************************************************"
+    yt target bbc-microbit-classic-gcc
+    yt build
+    cd ../micropython
     yt target bbc-microbit-classic-gcc-nosd
     yt up
-    echo "All done! execute 'vagrant ssh' to enter the virtual machine and build with 'cd shared_folder/micropython && yt build'"
+    yt build
+    echo "All done! execute 'vagrant ssh' to enter the virtual machine"
   SHELL
 end

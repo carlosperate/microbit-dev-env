@@ -8,6 +8,7 @@ import os
 sys.path.append(os.path.join('vagrant_shared', 'uflash'))
 import uflash
 
+
 if __name__ == '__main__':
     micropython_hex = os.path.join('vagrant_shared', 'micropython', 'build',
                                    'bbc-microbit-classic-gcc-nosd', 'source',
@@ -24,4 +25,3 @@ if __name__ == '__main__':
     else:
         print('The file %s does not exists' % micropython_hex +
               'are you sure you have built micropython successfully?')
-
