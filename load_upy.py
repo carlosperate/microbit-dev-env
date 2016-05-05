@@ -4,6 +4,8 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 import sys
 import os
+import time
+from datetime import datetime, timedelta
 
 sys.path.append(os.path.join('vagrant_shared', 'uflash'))
 import uflash
@@ -16,10 +18,13 @@ if __name__ == '__main__':
     if os.path.isfile(micropython_hex):
         #sys.argv.append('--runtime=%s' % micropython_hex)
         sys.argv[0] = '--runtime=%s' % micropython_hex
+        file_timestamp = os.path.getmtime(micropython_hex)
+        print('Flashing MicroPython modified on %s (%s ago):\n\t%s' %
+              (datetime.fromtimestamp(file_timestamp).strftime("%Y-%m-%d %H:%M:%S"),
+               timedelta(seconds=int(time.time() - file_timestamp)),
+               micropython_hex))
         if len(sys.argv) > 1:
-            print('Flashing script: %s' % sys.argv[1])
-        else:
-            print('Flashing only micropython.')
+            print('With Python script: %s\n' % sys.argv[1])
         uflash.main(sys.argv)
         #print(sys.argv)
     else:
