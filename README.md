@@ -51,7 +51,6 @@ Password: vagrant
 This will give you command line access to the virtual machine, allowing you to compile the source code contained in this project folder. By default you will find the `cpp-samples`, `micropython` and a couple of extra folders there, which can be accessed from the virtual machine to build the projects. So on the SSH connection:
 
 ```bash
-ls
 cd vagrant_shared/micropython
 yt build
 cd ../cpp-samples
