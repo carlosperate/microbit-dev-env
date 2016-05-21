@@ -1,0 +1,11 @@
+{
+  "name": "microbit-dalv1-template",
+  "version": "0.0.1",
+  "description": "A simple example of a microbit program for older versions of the DAL.",
+  "license": "MIT",
+  "dependencies": {
+    "microbit-dal":"lancaster-university/microbit-dal#1.4.17"
+  },
+  "targetDependencies": {},
+  "bin": "./src"
+}
