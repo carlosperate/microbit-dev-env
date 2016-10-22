@@ -2,8 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  # Building from Ubuntu 14.04 32 bit base
-  config.vm.box = "ubuntu/trusty32"
+  # Building from Ubuntu 16.04 64 bit
+  # Using alternative image, as the official has a bug with the ssh username and password:
+  # https://bugs.launchpad.net/cloud-images/+bug/1569237
+  config.vm.box = "bento/ubuntu-16.04"
 
   # Adding a recognisable names to vagrant and the virtual machine
   config.vm.define "microbit-vg" do |t|
@@ -36,5 +38,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, path: "get_source_code.sh"
   config.vm.provision "shell", privileged: false, path: "build_source_code.sh"
 
-  config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the virtual machine."
+  config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the virtual machine." \
+                              "\n\tUsername: vagrant\n\tPassword: vagrant"
 end

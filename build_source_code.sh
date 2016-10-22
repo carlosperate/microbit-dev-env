@@ -1,17 +1,23 @@
-#!/bin/bash
+#!/bin/sh
 echo "# Configuring yotta...\n"
-echo "**************************************************************************************"
-echo "*                                                                                    *"
-echo "* PLESE NOTE: You need to signin to your mbed account, open the link printed below ! *"
-echo "*                                                                                    *"
-echo "**************************************************************************************\n"
+echo "***************************************************************************************"
+echo "*                                                                                     *"
+echo "* PLESE NOTE: You need to sign in to your mbed account, open the link printed below ! *"
+echo "*                                                                                     *"
+echo "***************************************************************************************\n"
 yt login
-echo "#\n# Build C++ examples\n#"
+echo "#\n# Build C++ examples using DAL\n#"
 cd vagrant_shared/cpp-samples
+yt clean
 yt target bbc-microbit-classic-gcc
 yt build
+echo "# C++ hello world hex file location:"
+echo "#   vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex\n#\n"
 echo "#\n# Build MicroPython\n#"
 cd ../micropython
+yt clean
 yt target bbc-microbit-classic-gcc-nosd
 yt up
 yt build
+echo "# MicroPython hex file location:"
+echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#\n"
