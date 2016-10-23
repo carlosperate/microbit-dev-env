@@ -11,13 +11,13 @@ cd vagrant_shared/cpp-samples
 yt clean
 yt target bbc-microbit-classic-gcc
 yt build
-echo "# C++ hello world hex file location:"
-echo "#   vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex\n#\n"
 echo "#\n# Build MicroPython\n#"
 cd ../micropython
 yt clean
 yt target bbc-microbit-classic-gcc-nosd
 yt up
 yt build
-echo "# MicroPython hex file location:"
-echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#\n"
+echo "#\n# C++ hello world hex file location:"
+echo "#   vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex"
+echo "#\n# MicroPython hex file location:"
+echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#"

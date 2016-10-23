@@ -1,0 +1,36 @@
+From 39605f3c56d8da96d37d4bb49080afb4d977977c Mon Sep 17 00:00:00 2001
+From: carlosperate <carlosperate@users.noreply.github.com>
+Date: Sun, 23 Oct 2016 17:22:01 +0100
+Subject: [PATCH] Temporary increase heap and update deps to different DAL.
+
+---
+ module.json             | 2 +-
+ source/microbit/mprun.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/module.json b/module.json
+index 7ba6473..ffa42ac 100644
+--- a/module.json
++++ b/module.json
+@@ -8,7 +8,7 @@
+   "homepage": "http://micropython.org",
+   "dependencies":{
+     "mbed-classic": "~0.0.4",
+-    "microbit-dal":"lancaster-university/microbit-dal#v1.4.19"
++    "microbit-dal":"carlosperate/microbit-dal#v1.4.20-alpha"
+   },
+   "extraIncludes":[
+     "inc",
+diff --git a/source/microbit/mprun.c b/source/microbit/mprun.c
+index cfcf488..4d2b78b 100644
+--- a/source/microbit/mprun.c
++++ b/source/microbit/mprun.c
+@@ -99,7 +99,7 @@ void mp_run(void) {
+     mp_stack_set_limit(1800); // stack is 2k
+ 
+     // allocate the heap statically in the bss
+-    static uint32_t heap[9692 / 4];
++    static uint32_t heap[9372 / 4];
+     gc_init(heap, (uint8_t*)heap + sizeof(heap));
+ 
+     /*
