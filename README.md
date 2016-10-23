@@ -1,7 +1,7 @@
 # BBC micro:bit C/C++ and MicroPython Development Environment
 This repository contains a Vagrant script to facilitate the development of MicroPython and other C/C++ applications for the BBC micro:bit.
 
-This takes care of creating a virtual machine, installing all the development tools required, and get everything ready to compile. This useful tool offers a replicable development environment independent of your operating system, working the same way under Windows, OS X, or Linux.
+This takes care of creating a virtual machine, installing all the development tools required, and get everything ready to compile. This tool offers a replicable development environment that is independent of your operating system, working the same way under Windows, macOS, or Linux.
 
 
 ## Prerequisites
@@ -9,7 +9,7 @@ You will need to have the following first:
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* An [mbed account](https://www.mbed.com/) (you will need to login during installation!)
+* An [mbed account](https://www.mbed.com/) (This is **important** you will **need to login during installation!**)
 
 
 ## Installing
@@ -26,7 +26,7 @@ Getting the virtual machine up and running with Vagrant is extremely easy, on th
 vagrant up
 ```
 
-This will download an Ubuntu 14.04 32 bit virtual box image, so it might take a while depending on your internet connection. It will also install the toolchain, and download and compile the MicroPython source code and C++ examples, ensuring everything is ready to develop your applications.
+This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the toolchain, and download and compile the MicroPython source code and C++ examples, ensuring everything is ready to develop your applications.
 
 Please note! During one of the last stages of the installation, the **command line interface will request you to login to your mbed account**.
 A link should be printed on the console with a clear message, login to that page from your browser. The command line should automatically detect it and continue with the installation.

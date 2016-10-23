@@ -2,6 +2,8 @@
 cd vagrant_shared
 echo "#\n# Cloning C++ Examples\n#"
 git clone https://github.com/lancaster-university/microbit-samples.git cpp-samples
+echo "#\n# Cloning C++ Template for older DAL\n#"
+git clone https://github.com/carlosperate/microbit-dal-v1-cpp-template.git cpp-template-dal-v1
 echo "#\n# Cloning MicroPython repository...\n#"
 git clone https://github.com/bbcmicrobit/micropython.git
 echo "#\n# Cloning uFlash repository...\n#"
