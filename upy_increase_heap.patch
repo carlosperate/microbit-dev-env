@@ -1,0 +1,22 @@
+From 56110ea891e05f11dd93ca78272aaa17fdbeb23e Mon Sep 17 00:00:00 2001
+From: carlosperate <carlosperate@users.noreply.github.com>
+Date: Sat, 19 Nov 2016 22:57:35 +0000
+Subject: [PATCH] Increase heap.
+
+---
+ source/microbit/mprun.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/source/microbit/mprun.c b/source/microbit/mprun.c
+index 414a1f7..2a2fc21 100644
+--- a/source/microbit/mprun.c
++++ b/source/microbit/mprun.c
+@@ -99,7 +99,7 @@ void mp_run(void) {
+     mp_stack_set_limit(1800); // stack is 2k
+ 
+     // allocate the heap statically in the bss
+-    static uint32_t heap[9720 / 4];
++    static uint32_t heap[9372 / 4];
+     gc_init(heap, (uint8_t*)heap + sizeof(heap));
+ 
+     /*

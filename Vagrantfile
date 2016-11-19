@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "vagrant_shared", "/home/vagrant/vagrant_shared"
 
   # Temporary workaround: Copy MicroPython patch
-  config.vm.provision "file", source: "upy_temp_deps.patch", destination: "~/vagrant_shared/upy_temp_deps.patch"
+  config.vm.provision "file", source: "upy_increase_heap.patch", destination: "~/vagrant_shared/upy_increase_heap.patch"
 
   # Shell provision to install dependencies, download and build source code
   config.vm.provision "shell", privileged: false, path: "install_compiler.sh"

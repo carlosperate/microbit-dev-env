@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "#\n# Apt update...\n#"
-sudo apt-get update
+sudo apt-get update -qq
 echo "#\n# Installing git...\n#"
 sudo apt-get install -y git
 echo "#\n# Installing extra Python dependencies and pip...\n#"
@@ -12,7 +12,7 @@ echo "#\n# Installing the compiler...\n#"
 sudo apt-get remove binutils-arm-none-eabi gcc-arm-none-eabi
 sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa
 sudo add-apt-repository -y ppa:pmiller-opensource/ppa
-sudo apt-get update
+sudo apt-get update -qq
 sudo apt-get install gcc-arm-embedded
 sudo apt-get install -y cmake ninja-build gcc-arm-none-eabi srecord
 arm-none-eabi-gcc --version
