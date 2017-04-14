@@ -17,4 +17,4 @@ git clone https://github.com/ntoll/microrepl.git
 #   https://github.com/bbcmicrobit/micropython/issues/363
 echo "#\n# Applying patch to MicroPython...\n#"
 cd micropython
-git apply -v ../upy_increase_heap.patch
+git apply -v ../upy_increase_heap.patch --ignore-space-change --ignore-whitespace
