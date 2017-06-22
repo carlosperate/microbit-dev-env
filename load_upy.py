@@ -1,5 +1,21 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""uFlash Helper Script
+The MicroPython hex file is saved into the following below, which you can drop
+into the micro:bit USB drive for flashing:
+
+    vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex
+
+To simplify the process uflash has been included with this wrapper script to
+load MicroPython with or without an additional Python program. So, from the
+host operating system:
+    python load_upy.py
+or
+    python load_upy.py <path to your python file>
+
+For a quick test you could load a MicroPython examples for the micro:bit:
+    python load_upy.py vagrant_shared/micropython/examples/conway.py
+"""
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 import sys

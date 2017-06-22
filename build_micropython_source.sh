@@ -10,12 +10,6 @@ sudo -H pip install pyserial
 sudo -H pip3 install pyserial
 git clone https://github.com/ntoll/microrepl.git
 
-# The following is juts a temporary patch to resolve:
-#   https://github.com/bbcmicrobit/micropython/issues/363
-echo "#\n# Applying patch to MicroPython...\n#"
-cd micropython
-git apply -v ../upy_increase_heap.patch --ignore-space-change --ignore-whitespace
-
 # Build it
 echo "# Configuring yotta...\n"
 echo "***************************************************************************************"
@@ -25,7 +19,7 @@ echo "*                                                                         
 echo "***************************************************************************************\n"
 yt login
 echo "#\n# Build MicroPython\n#"
-cd ../micropython
+cd micropython
 yt clean
 yt target bbc-microbit-classic-gcc-nosd
 yt up

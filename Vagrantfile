@@ -33,8 +33,8 @@ Vagrant.configure("2") do |config|
   # optional third argument is a set of non-required options.
   config.vm.synced_folder "vagrant_shared", "/home/vagrant/vagrant_shared"
 
-  # Temporary workaround: Copy MicroPython patch
-  config.vm.provision "file", source: "upy_increase_heap.patch", destination: "~/vagrant_shared/upy_increase_heap.patch"
+  # Example to copy file from repository root to shared folder in VM
+  # config.vm.provision "file", source: "file.x", destination: "~/vagrant_shared/file.x"
 
   #
   # Comment in/out the lines below to enable/disable installing or downloading individual environments
