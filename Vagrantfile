@@ -36,10 +36,15 @@ Vagrant.configure("2") do |config|
   # Temporary workaround: Copy MicroPython patch
   config.vm.provision "file", source: "upy_increase_heap.patch", destination: "~/vagrant_shared/upy_increase_heap.patch"
 
-  # Shell provision to install dependencies, download and build source code
-  config.vm.provision "shell", privileged: false, path: "install_compiler.sh"
-  config.vm.provision "shell", privileged: false, path: "get_source_code.sh"
-  config.vm.provision "shell", privileged: false, path: "build_source_code.sh"
+  #
+  # Comment in/out the lines below to enable/disable installing or downloading individual environments
+  #
+  # Install the tool chain required to compile C or C++ programs, and/or compile MicroPython
+  config.vm.provision "shell", privileged: false, path: "install_cpp_toolchain.sh"
+  # Download and compile the C++ examples (needs install_cpp_toolchain.sh to run first)
+  config.vm.provision "shell", privileged: false, path: "build_cpp_source.sh"
+  # Download and compile MicroPython (needs install_cpp_toolchain.sh to run first)
+  config.vm.provision "shell", privileged: false, path: "build_micropython_source.sh"
 
   config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the virtual machine." \
                               "\n\tUsername: vagrant\n\tPassword: vagrant"
