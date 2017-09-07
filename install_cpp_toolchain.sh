@@ -13,7 +13,7 @@ sudo apt-get remove binutils-arm-none-eabi gcc-arm-none-eabi
 sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa
 sudo add-apt-repository -y ppa:pmiller-opensource/ppa
 sudo apt-get update -qq
-sudo apt-get install gcc-arm-embedded
+sudo apt-get install -y gcc-arm-embedded
 sudo apt-get install -y cmake ninja-build gcc-arm-none-eabi srecord
 arm-none-eabi-gcc --version
 echo "#\n# Installing yotta...\n#"
