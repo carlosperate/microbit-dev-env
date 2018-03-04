@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   # Building from Ubuntu 16.04 64 bit
   # Using alternative image, as the official has a bug with the ssh username and password:
   # https://bugs.launchpad.net/cloud-images/+bug/1569237
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   # Adding a recognisable names to vagrant and the virtual machine
   config.vm.define "microbit-vg" do |t|
@@ -26,6 +26,8 @@ Vagrant.configure("2") do |config|
     v.memory = mem_size > 0 ? mem_size : 2048
     cpu_count = ENV['VAGRANT_CPUS'].to_i
     v.cpus = cpu_count > 0 ? cpu_count: 1
+    # Display or hide the VirtualBox GUI when booting the machine
+    v.gui = false
   end
 
   # Create a forwarded port mapping which allows access to a specific port
