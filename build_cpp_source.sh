@@ -7,13 +7,6 @@ echo "#\n# Cloning C++ Template for older DAL\n#"
 git clone https://github.com/carlosperate/microbit-dal-v1-cpp-template.git cpp-template-dal-v1
 
 # Build it
-echo "# Configuring yotta...\n"
-echo "***************************************************************************************"
-echo "*                                                                                     *"
-echo "* PLESE NOTE: You need to sign in to your mbed account, open the link printed below ! *"
-echo "*                                                                                     *"
-echo "***************************************************************************************\n"
-yt login
 echo "#\n# Build C++ examples using DAL\n#"
 cd cpp-samples
 yt clean

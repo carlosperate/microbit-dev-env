@@ -9,7 +9,6 @@ You will need to have the following first:
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* An [mbed account](https://www.mbed.com/) (This is **important** you will **need to login during installation!**)
 
 
 ## Installing
@@ -27,9 +26,6 @@ vagrant up
 ```
 
 This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the toolchain, and download and compile the MicroPython source code and C++ examples, ensuring everything is ready to develop your applications.
-
-Please note! During one of the last stages of the installation, the **command line interface will request you to login to your mbed account**.
-A link should be printed on the console with a clear message, login to that page from your browser. The command line should automatically detect it and continue with the installation.
 
 
 ## Access the virtual machine

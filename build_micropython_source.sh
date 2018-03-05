@@ -11,13 +11,6 @@ sudo -H pip3 install pyserial
 git clone https://github.com/ntoll/microrepl.git
 
 # Build it
-echo "# Configuring yotta...\n"
-echo "***************************************************************************************"
-echo "*                                                                                     *"
-echo "* PLESE NOTE: You need to sign in to your mbed account, open the link printed below ! *"
-echo "*                                                                                     *"
-echo "***************************************************************************************\n"
-yt login
 echo "#\n# Build MicroPython\n#"
 cd micropython
 yt clean
