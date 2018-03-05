@@ -3,7 +3,8 @@ echo "#\n# Apt update...\n#"
 sudo apt-get update -qq
 echo "#\n# Installing git...\n#"
 sudo apt-get install -y git
-echo "#\n# Installing node.js...\n#"
+echo "#\n# Installing node.js and npm...\n#"
+sudo apt-get remove -y nodejs npm
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 echo "#\n# Installing node.js build tools...\n#"
