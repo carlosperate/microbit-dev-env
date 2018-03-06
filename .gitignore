@@ -4,6 +4,9 @@
 # Vagrant shared folder
 vagrant_shared/
 
+# Vagrant log file
+*-cloudimg-console.log
+
 
 #####################
 # OS Specific files #

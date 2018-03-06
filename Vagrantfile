@@ -5,6 +5,12 @@ Vagrant.configure("2") do |config|
   # Building from Ubuntu 16.04 64 bit
   config.vm.box = "ubuntu/xenial64"
 
+  # This Ubuntu image creates a ubuntu-xenial-16.04-cloudimg-console.log file
+  #   https://betacloud.io/get-rid-of-ubuntu-xenial-16-04-cloudimg-console-log/
+  config.vm.provider "virtualbox" do |vb|
+    vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+  end
+
   # Adding a recognisable names to vagrant and the virtual machine
   config.vm.define "microbit-vg" do |t|
   end
