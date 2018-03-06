@@ -1,18 +1,17 @@
 #!/bin/sh
-set -x #echo on
+alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
 
-echo "#\n# Apt update...\n#"
+pretty_echo "Installing git..."
 sudo apt-get update -qq
-echo "#\n# Installing git...\n#"
 sudo apt-get install -y git
-echo "#\n# Installing extra Python dependencies...\n#"
+pretty_echo "Installing extra Python dependencies..."
 sudo apt-get install -y python-setuptools python-dev python-pip python3-pip
-echo "#\n# Installing pip...\n#"
+pretty_echo "Installing pip..."
 sudo easy_install pip
 sudo pip install -U pip
-echo "#\n# Installing general build tools...\n#"
+pretty_echo "Installing general build tools..."
 sudo apt-get install -y cmake ninja-build srecord build-essential
-echo "#\n# Installing yotta dependencies...\n#"
+pretty_echo "Installing yotta dependencies..."
 sudo apt-get install -y libreadline-dev libffi-dev libssl-dev libyaml-dev
-echo "#\n# Installing yotta...\n#"
+pretty_echo "Installing yotta..."
 sudo -H pip install yotta

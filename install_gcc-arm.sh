@@ -1,11 +1,11 @@
 #!/bin/sh
-set -x #echo on
+alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
 
-echo "#\n# Removing possible installation of GCC ARM compiler...\n#"
+pretty_echo "Removing possible installation of GCC ARM compiler..."
 sudo apt-get remove binutils-arm-none-eabi gcc-arm-none-eabi
-echo "#\n# Installing GCC ARM compiler...\n#"
+pretty_echo "Installing GCC ARM compiler..."
 sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update -qq
 sudo apt-get install -y gcc-arm-embedded
-echo "#\n# Checking GCC ARM compiler version...\n#"
+pretty_echo "Checking GCC ARM compiler version..."
 arm-none-eabi-gcc --version

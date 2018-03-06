@@ -1,26 +1,25 @@
 #!/bin/sh
-set -x #echo on
+alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
 
-echo "#\n# Apt update...\n#"
+pretty_echo "Installing git..."
 sudo apt-get update -qq
-echo "#\n# Installing git...\n#"
 sudo apt-get install -y git
-echo "#\n# Removing possible installation of node and npm...\n#"
+pretty_echo "Removing possible installation of node and npm..."
 sudo apt-get remove -y nodejs npm
-echo "#\n# Installing node.js build tools...\n#"
+pretty_echo "Installing node.js build tools..."
 sudo apt-get install -y build-essential
-echo "#\n# Installing node.js and npm...\n#"
+pretty_echo "Installing node.js and npm..."
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
-echo "#\n# Installing yotta dependencies...\n#"
+pretty_echo "Installing yotta dependencies..."
 sudo apt-get install -y python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev
-echo "#\n# Installing pip...\n#"
+pretty_echo "Installing pip..."
 sudo easy_install pip
 sudo pip install -U pip
-echo "#\n# Installing yotta...\n#"
+pretty_echo "Installing yotta..."
 sudo -H pip install yotta
-echo "#\n# Installing PXT...\n#"
+pretty_echo "Installing PXT..."
 sudo npm install -g pxt
-echo "#\n# Installing PXT build dependencies...\n#"
+pretty_echo "Installing PXT build dependencies..."
 sudo npm install -g jake
 sudo npm install -g typings
