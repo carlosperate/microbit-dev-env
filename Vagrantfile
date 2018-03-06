@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
   # Download and compile C++ DAL examples    (requires install_cpp_toolchain.sh)
   config.vm.provision "shell", privileged: false, path: "build_cpp_source.sh"
   # Download and compile MicroPython         (requires install_cpp_toolchain.sh)
-  config.vm.provision "shell", privileged: false, path: "build_micropython_source.sh"
+  config.vm.provision "shell", privileged: false, path: "build_upy_source.sh"
 
 
   config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the " \
