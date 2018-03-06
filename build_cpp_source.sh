@@ -1,4 +1,6 @@
 #!/bin/sh
+set -x #echo on
+
 # Download sources
 cd vagrant_shared
 echo "#\n# Cloning C++ Examples\n#"

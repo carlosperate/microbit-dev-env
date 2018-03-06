@@ -1,4 +1,6 @@
 #!/bin/sh
+set -x #echo on
+
 echo "#\n# Removing possible installation of GCC ARM compiler...\n#"
 sudo apt-get remove binutils-arm-none-eabi gcc-arm-none-eabi
 echo "#\n# Installing GCC ARM compiler...\n#"

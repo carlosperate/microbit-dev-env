@@ -1,4 +1,6 @@
 #!/bin/sh
+set -x #echo on
+
 echo "#\n# Apt update...\n#"
 sudo apt-get update -qq
 echo "#\n# Installing git...\n#"

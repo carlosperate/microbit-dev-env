@@ -1,16 +1,20 @@
 #!/bin/sh
+set -x #echo on
+
 echo "#\n# Apt update...\n#"
 sudo apt-get update -qq
 echo "#\n# Installing git...\n#"
 sudo apt-get install -y git
-echo "#\n# Installing node.js and npm...\n#"
+echo "#\n# Removing possible installation of node and npm...\n#"
 sudo apt-get remove -y nodejs npm
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
 echo "#\n# Installing node.js build tools...\n#"
 sudo apt-get install -y build-essential
+echo "#\n# Installing node.js and npm...\n#"
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
 echo "#\n# Installing yotta dependencies...\n#"
 sudo apt-get install -y python-setuptools cmake build-essential ninja-build python-dev libffi-dev libssl-dev
+echo "#\n# Installing pip...\n#"
 sudo easy_install pip
 sudo pip install -U pip
 echo "#\n# Installing yotta...\n#"
