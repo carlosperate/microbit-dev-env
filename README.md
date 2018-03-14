@@ -1,35 +1,60 @@
-# BBC micro:bit C/C++ and MicroPython Development Environment
-This repository contains a Vagrant script to facilitate the development of MicroPython and other C/C++ applications for the BBC micro:bit.
+# BBC micro:bit C/C++, MakeCode and MicroPython Development Environment
+This repository contains a Vagrant box configured to facilitate the development of MicroPython, MakeCode, and C/C++ programs for the BBC micro:bit.
 
-This takes care of creating a virtual machine, installing all the development tools required, and get everything ready to compile. This tool offers a replicable development environment that is independent of your operating system, working the same way under Windows, macOS, or Linux.
+[Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
+
+This very easy to use virtual machine contains everything you need to:
+
+* Build micro:bit MicroPython from source
+	* And load Python scripts using your own built MicroPython
+* Run a local version of MakeCode/PXT
+* Develop your own MakeCode packages
+* Build C/C++ applications for the micro:bit
+
+With a single command this project takes care of creating a virtual machine, installing all the development tools and dependencies required, download all the source code, compile everything, and get it ready for use. It offers a replicable development environment that is independent of your operating system, working the same way under Windows, macOS, or Linux.
 
 
-## Prerequisites
-You will need to have the following first:
+Table of contents:
+* [Install](#install)
+* [Access the virtual machine](#access-the-virtual-machine)
+* [Workflow](#workflow)
+* [Environments](#environments)
+	* [MicroPython](#micropython)
+	* [MakeCode](#makecode)
+	* [C/C++](#cc)
+* [License](#license)
+* [Trademarks](#trademarks)
+
+
+## Install
+
+### Prerequisites
+You will need the following applications first:
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
+* (Optional)[Python](https://www.python.org/)
 
+### Vagrant Project Bring-up
 
-## Installing
-Clone, or [download](https://github.com/carlosperate/microbit-micropython-dev-env.git) this repository:
+Clone, or [download](https://github.com/carlosperate/microbit-dev-env.git) this repository:
 
 ```bash
 git clone https://github.com/carlosperate/microbit-dev-env.git
 cd microbit-dev-env
 ```
 
-Getting the virtual machine up and running with Vagrant is extremely easy, on the Command Line Interface at the project folder run:
+Getting the virtual machine up and running with Vagrant is extremely easy, on the Command Line Interface just run:
 
 ```bash
 vagrant up
 ```
 
-This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the toolchain, and download and compile the MicroPython source code and C++ examples, ensuring everything is ready to develop your applications.
+This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the tool-chain, download and build all the source code for the different projects, ensuring everything is ready to develop your application in any of these platforms.
 
 
-## Access the virtual machine
-Once you have the Vagrant box up and running (ensure it is with the `vagrant up` command), you can SSH with Vagrant:
+## Access the Virtual Machine
+Once you have the Vagrant box up and running (`vagrant up` command), you can SSH with Vagrant:
 
 ```bash
 vagrant ssh
@@ -44,12 +69,10 @@ Username: vagrant
 Password: vagrant
 ```
 
-This will give you command line access to the virtual machine, allowing you to compile the source code contained in this project folder. By default you will find the `cpp-samples`, `micropython` and a couple of extra folders there, which can be accessed from the virtual machine to build the projects. So on the SSH connection:
+This will give you command line access to the virtual machine, allowing you to compile the source code contained in the `vagrant_shared` folder. By default you will find the `cpp-samples`, `micropython`, `pxt-workspace` and a couple of extra folders there, which can be accessed from the virtual machine to build the projects. So within the SSH connection you can:
 
 ```bash
 cd vagrant_shared/micropython
-yt build
-cd ../cpp-samples
 yt build
 ```
 
@@ -62,39 +85,81 @@ vagrant halt
 More information can be found in the [Vagrant documentation](https://www.vagrantup.com/docs/).
 
 
-## Load the C++ examples to the micro:bit
-The C++ examples are built to the following file, by default the "hello world" example is compiled:
+## Workflow
+The general workflow concept is to have one folder that is accessible by both the host operating system (your computer), and the virtual machine.
 
-```
-vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex
-```
+This allows you to create and edit your code like you would normally do (using any IDE or editor you prefer), and then use the virtual machine to compile it there.
 
-To load the application into the microbit you will need to copy the `microbit-samples-combined.hex` file into the microbit USB drive.
+So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host operating system and guest virtual machine. The virtual machine location for this folder is `~/vagrant_shared` and this is where the source code and projects live.
 
-To compile a different example, edit the `MicroBitSamples.h` file in the `vagrant_shared/cpp-samples/source` folder and uncomment the line matching the sample you wish to use (only a single example should be uncommented). 
+The `vagrant_shared` directory has been gitignored, so feel free to add your own repositories there without interference from this one.
 
-To recompile the examples access the virtual machine via SSH and execute:
+
+## Environments
+
+### C/C++
+##### Project/code location
+There are two C/C++ projects:
+* [microbit samples](https://github.com/lancaster-university/microbit-samples): A collection of example programs using the micro:bit runtime (DAL).
+	```
+	vagrant_shared/cpp-samples/
+	```
+* [C++ template for DAL v1](https://github.com/carlosperate/microbit-dal-v1-cpp-template): Simple hello world program template using an older version of the micro:bit runtime/DAL (v1.4.x). The DAL version used here is the same as the version in MicroPython, so it's only useful for cases where you might need to test something for MicroPython development.
+	```
+	vagrant_shared/cpp-template-dal-v1/
+	```
+
+##### Building
+Both C/C++ projects have already been built, but if you wish to recompile the examples you can access the virtual machine via SSH and within the project directory run:
 
 ```bash
-cd vagrant_shared/cpp-samples
+yt clean
 yt build
 ```
 
+The `microbit samples` source/examples folder contains a selection of samples demonstrating the capabilities and usage of the runtime APIs. To select a sample, simply copy the .cpp files from the relevant folder into the `microbit_samples/source/` folder.
 
-## Load MicroPython to the micro:bit
-The MicroPython hex file is saved into the following path, which you can drop into the microbit USB drive for flashing:
+##### Built output locations
+
+* microbit samples: `vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex`
+* C++ template for DAL v1: `vagrant_shared/cpp-template-dal-v1/build/bbc-microbit-classic-gcc/src/microbit-dalv1-template-combined.hex`
+
+To load the application into the micro:bit you will need to copy the `microbit-xxx-combined.hex` file into the micro:bit USB drive.
+
+### MicroPython
+##### Project/code location
+The MicroPython source code can be found in:
+
+```bash
+vagrant_shared/micropython/
+```
+
+##### Building
+MicroPython has already been built, but if you wish to build it again, you can run in an SSH session:
+
+```bash
+cd ~/vagrant_shared/micropython/
+yt clean
+yt build
+```
+
+##### Built output locations
+The MicroPython hex file is saved into the following path:
 
 ```bash
 vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex
 ```
 
-To simplify the process [uflash](https://github.com/ntoll/uflash/) has been included with a wrapper script to load MicroPython with or without an additional Python program. So, from the host operating system:
+##### Flashing to the micro:bit
+You can simply copy the MicroPython hex from the location above into your micro:bit USB drive.
+
+To simplify the process and be able to load MicroPython with or without an additional Python program, [uflash](https://github.com/ntoll/uflash/) has been included with a wrapper script. So, from the host operating system:
 
 ```bash
 python load_upy.py
 ``` 
 
-or
+or:
 
 ```bash
 python load_upy.py <path to your python file>
@@ -106,8 +171,7 @@ For a quick test you could load any of the MicroPython examples for the microbit
 python load_upy.py vagrant_shared/micropython/examples/conway.py
 ```
 
-
-### Access the MicroPython REPL
+##### Access the MicroPython REPL
 Once MicroPython is flashed, you will have access to the REPL on the USB CDC serial port, with baudrate 115200 (eg `picocom /dev/ttyACM0 -b 115200` on Linux, `screen /dev/tty.usbmodem* 115200` on OS X, or a tool like putty on Windows).
 
 If you have the Python package PySerial installed (`pip install pyserial`), you can also use [microrepl](https://github.com/ntoll/microrepl), which is already included:
@@ -118,15 +182,16 @@ python vagrant_shared/microrepl/microrepl.py
 
 If you are running Windows you might need to install the microbit driver, which can be found at: https://developer.mbed.org/handbook/Windows-serial-configuration
 
+### MakeCode
 
-## Workflow
-The general workflow concept for this Vagrant configuration is to be able do the compilation on the virtual machine, while being able to access and work on the source code with your preferred tools on your host operating system.
+TODO
 
-So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host and guest vm. The host location for this folder is `~/vagrant_shared` and this is where the MicroPython source code, C++ examples, the microrepl, and uflash have been downloaded as git repository clones.
 
-The `vagrant_shared` directory has been gitignored, so feel free to add your own repositories there without interference from this one. 
+## License
+
+[MIT](LICENSE)
 
 
 ## Trademarks
 This projects is not endorsed, sponsored or associated with the BBC.
-"BBC” and “micro:bit” are trade marks of the BBC. http://microbit.co.uk/
+"BBC” and “micro:bit” are trade marks of the BBC. https://microbit.org
