@@ -20,5 +20,5 @@ yt target bbc-microbit-classic-gcc-nosd
 yt up
 yt build
 { set +x; } 2> /dev/null
-echo "#\n# MicroPython hex file location:"
-echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#"
+echo "#\n#\n# MicroPython hex file location:"
+echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#\n#"
