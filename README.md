@@ -35,7 +35,7 @@ You will need the following applications first:
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* (Optional)[Python](https://www.python.org/)
+* (Optional) [Python](https://www.python.org/)
 
 ### Vagrant Project Bring-up
 
@@ -90,11 +90,19 @@ More information can be found in the [Vagrant documentation](https://www.vagrant
 ## Workflow
 The general workflow concept is to have one folder that is accessible by both the host operating system (your computer), and the virtual machine.
 
-This allows you to create and edit your code like you would normally do (using any IDE or editor you prefer), and then use the virtual machine to compile it there.
+This allows you to create and edit your code like you would normally do, using any IDE or editor you prefer, and then use the virtual machine to build it or compile it.
 
-So, at the top level of the project directory you will find the `vagrant_shared` folder, a shared folder between host operating system and guest virtual machine. The virtual machine location for this folder is `~/vagrant_shared` and this is where the source code and projects live.
+In essence the steps are:
 
-The `vagrant_shared` directory has been gitignored, so feel free to add your own repositories there without interference from this one.
+* Edit the code inside the `vagrant_shared` folder in your OS as you would normally do
+* SSH into the virtual machine
+* Compile/build the project from the SSH session (accessible via `~/vagrant_shared/`)
+* The built output can be accessed from the `vagrant_shared` folder within your OS
+
+The `vagrant_shared` folder is where the source code and projects have to be located, as Vagrant configures it as a shared folder that can be accessed indiscriminately by both your OS and the virtual machine.
+Remember! If you delete something within the virtual machine `~/vagrant_shared/` directory it will also be removed from the folder you see in your Operating System.
+
+The `vagrant_shared` directory has been gitignored, so feel free to add or clone your own repositories there without interference from this one.
 
 
 ## Environments
