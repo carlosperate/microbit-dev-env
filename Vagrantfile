@@ -36,8 +36,8 @@ Vagrant.configure("2") do |config|
 
   # Create a forwarded port mapping which allows access to a specific port.
   # This one is for running PXT HTTP port 3232 WS port 3233.
-  # Note that when you run `rails server`, you need to specify that it binds to
-  # host 0.0.0.0, not localhost, or the port forwarding won't work.
+  # Note that when you run a VM local server you need to specify that it binds
+  # to host 0.0.0.0, not localhost, or the port forwarding won't work.
   #   pxt serve --hostname 0.0.0.0 --port 3232 --wsport 3233
   config.vm.network 'forwarded_port', guest: 3232, host: 3232, auto_correct: true
   config.vm.network 'forwarded_port', guest: 3233, host: 3233, auto_correct: true
@@ -56,6 +56,10 @@ Vagrant.configure("2") do |config|
   # Example to copy file from repository root to shared folder in VM
   # config.vm.provision "file", source: "file.x", destination: "~/vagrant_shared/file.x"
 
+  # Fix to an issue with setting up locales in the Ubuntu VM
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    sudo apt-get install -y language-pack-en
+  SHELL
 
   # Everything below will need the GCC ARM compiler, do not exclude
   config.vm.provision "shell", privileged: false, path: "install_gcc-arm.sh"
