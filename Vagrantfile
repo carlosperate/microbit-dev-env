@@ -61,8 +61,9 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y language-pack-en
   SHELL
 
-  # Everything below will need the GCC ARM compiler, do not exclude
+  # Everything below will need the GCC ARM compiler and yotta, so do not exclude
   config.vm.provision "shell", privileged: false, path: "install_gcc-arm.sh"
+  config.vm.provision "shell", privileged: false, path: "install_yotta.sh"
 
 
   ##############################################################################
