@@ -83,7 +83,7 @@ Vagrant.configure("2") do |config|
   #                                                                            #
   ##############################################################################
   # Set up the PXT workspace for micro:bit   (requires install_pxt_toolchain.sh)
-  config.vm.provision "shell", privileged: false, path: "setup_pxt_workspace.sh"
+  config.vm.provision "shell", privileged: false, path: "build_pxt_workspace.sh"
   # Download and compile C++ DAL examples    (requires install_cpp_toolchain.sh)
   config.vm.provision "shell", privileged: false, path: "build_cpp_source.sh"
   # Download and compile MicroPython         (requires install_cpp_toolchain.sh)

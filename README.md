@@ -183,25 +183,25 @@ To simplify the process and be able to load MicroPython with or without an addit
 To load only the new MicroPython simply run this script:
 
 ```bash
-python load_upy.py
+python upy_load.py
 ``` 
 
 To load the new MicroPython together with your Python code:
 
 ```bash
-python load_upy.py <path to your python file>
+python upy_load.py <path to your python file>
 ```
 
 For a quick test you could load any of the included MicroPython examples for the microbit:
 
 ```bash
-python load_upy.py vagrant_shared/micropython/examples/conway.py
+python upy_load.py vagrant_shared/micropython/examples/conway.py
 ```
 
-All command line arguments sent to the `load_upy.py` wrapper script are sent over to uFlash (more info about available options in the [uFlash's README](https://github.com/ntoll/uflash)). So, for example, if you'd like to save the combined `micropython.hex` file (MicroPython + user Python code) into the current directory (indicated using `.`), you can do so with the following command:
+All command line arguments sent to the `upy_load.py` wrapper script are sent over to uFlash (more info about available options in the [uFlash's README](https://github.com/ntoll/uflash)). So, for example, if you'd like to save the combined `micropython.hex` file (MicroPython + user Python code) into the current directory (indicated using `.`), you can do so with the following command:
 
 ```bash
-python load_upy.py vagrant_shared/micropython/examples/conway.py .
+python upy_load.py vagrant_shared/micropython/examples/conway.py .
 ```
 
 #### Access the MicroPython REPL

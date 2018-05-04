@@ -9,12 +9,12 @@ into the micro:bit USB drive for flashing:
 To simplify the process uflash has been included with this wrapper script to
 load MicroPython with or without an additional Python program. So, from the
 host operating system:
-    python load_upy.py
+    python upy_load.py
 or
-    python load_upy.py <path to your python file>
+    python upy_load.py <path to your python file>
 
 For a quick test you could load a MicroPython examples for the micro:bit:
-    python load_upy.py vagrant_shared/micropython/examples/conway.py
+    python upy_load.py vagrant_shared/micropython/examples/conway.py
 """
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
