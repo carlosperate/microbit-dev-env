@@ -1,12 +1,14 @@
 # BBC micro:bit Development Environment for C/C++, MakeCode, and MicroPython
+
 This repository contains a Vagrant box configured to facilitate the development of MicroPython, MakeCode, and C/C++ programs for the BBC micro:bit.
 
 It uses [Vagrant](https://www.vagrantup.com/intro/index.html), a tool to easily build and manage virtual machine environments.
 
-This very easy to use virtual machine contains everything you need to:
+This virtual machine is very easy to use and contains everything you need to:
 
 * Build micro:bit MicroPython from source
-	* And load Python scripts using your own built MicroPython
+	* Easily load Python scripts using your own built MicroPython
+	* Easily access the MicroPython REPL
 * Run a local version of MakeCode/PXT
 * Develop your own MakeCode packages
 * Build C/C++ applications for the micro:bit
@@ -17,6 +19,7 @@ It offers a replicable development environment that is independent of your opera
 
 
 ## Table of contents:
+
 * [Install](#install)
 * [Access the virtual machine](#access-the-virtual-machine)
 * [Workflow](#workflow)
@@ -56,7 +59,13 @@ This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a 
 
 
 ## Access the Virtual Machine
-Once you have the Vagrant box up and running (`vagrant up` command), you can SSH with Vagrant:
+
+First, start-up the virtual machine:
+```bash
+vagrant up
+```
+
+You can now SSH into the virtual machine with Vagrant itself:
 
 ```bash
 vagrant ssh
@@ -78,7 +87,7 @@ cd vagrant_shared/micropython
 yt build
 ```
 
-To close the virtual machine from running on the background, you can use the following command on the host:
+To stop the virtual machine from running, you can use the following command on the host:
 
 ```
 vagrant halt
@@ -88,6 +97,7 @@ More information can be found in the [Vagrant documentation](https://www.vagrant
 
 
 ## Workflow
+
 The general workflow concept is to have one folder that is accessible by both the host operating system (your computer), and the virtual machine.
 
 This allows you to create and edit your code like you would normally do, using any IDE or editor you prefer, and then use the virtual machine to build it or compile it.
@@ -114,23 +124,22 @@ There are two C/C++ projects:
 	```
 	vagrant_shared/cpp-samples/
 	```
-* [C++ template for DAL v1](https://github.com/carlosperate/microbit-dal-v1-cpp-template): Simple hello world program template using an older version of the micro:bit runtime/DAL (v1.4.x). This is the same DAL version as used by MicroPython v0.9, so it's only useful for cases where you might need to test something for MicroPython development.
+* [C++ template for DAL v1](https://github.com/carlosperate/microbit-dal-v1-cpp-template): Simple hello world program template using an older version of the micro:bit runtime/DAL (v1.4.x). This is the same DAL version used by MicroPython v0.9, so it's only useful for cases where you might need to test something for MicroPython development.
 	```
 	vagrant_shared/cpp-template-dal-v1/
 	```
 
 #### Building
-Both C/C++ projects have already been built, but if you wish to recompile the examples you can access the virtual machine via SSH and within the project directory run:
+Both C/C++ projects have already been built, but if you wish to recompile the examples you can access the virtual machine via SSH, and within the project directory run:
 
 ```bash
 yt clean
 yt build
 ```
 
-The `microbit samples` source/examples folder contains a selection of samples demonstrating the capabilities and usage of the runtime APIs. To select a sample, simply copy the .cpp files from the relevant folder into the `microbit_samples/source/` folder.
+The `cpp-samples/source/examples` folder contains a selection of samples demonstrating the capabilities and usage of the runtime APIs. To select a sample, simply copy the .cpp files from the relevant folder into the `cpp-samples/source/` folder. More info can be found in the [microbit samples](https://github.com/lancaster-university/microbit-samples) repository.
 
 #### Built output locations
-
 * microbit samples:
     ```
     vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex
@@ -167,11 +176,11 @@ vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-m
 ```
 
 #### Flashing to the micro:bit
-You can simply copy the MicroPython hex from the location above into your micro:bit USB drive.
+You can simply copy the MicroPython hex into your micro:bit USB drive.
 
 To simplify the process and be able to load MicroPython with or without an additional Python program, [uflash](https://github.com/ntoll/uflash/) has been included with a wrapper script. So, from the host operating system you can run the following if you have Python (2 or 3) installed.
 
-To load only the new MicroPython:
+To load only the new MicroPython simply run this script:
 
 ```bash
 python load_upy.py
@@ -183,19 +192,25 @@ To load the new MicroPython together with your Python code:
 python load_upy.py <path to your python file>
 ```
 
-For a quick test you could load any of the MicroPython examples for the microbit:
+For a quick test you could load any of the included MicroPython examples for the microbit:
 
 ```bash
 python load_upy.py vagrant_shared/micropython/examples/conway.py
 ```
 
-#### Access the MicroPython REPL
-Once MicroPython is flashed, you will have access to the REPL on the USB CDC serial port, with baudrate 115200 (eg `picocom /dev/ttyACM0 -b 115200` on Linux, `screen /dev/tty.usbmodem* 115200` on OS X, or a tool like putty on Windows).
-
-If you have the Python package PySerial installed (`pip install pyserial`), you can also use [microrepl](https://github.com/ntoll/microrepl), which is already included:
+All command line arguments sent to the `load_upy.py` wrapper script are sent over to uFlash (more info about available options in the [uFlash's README](https://github.com/ntoll/uflash)). So, for example, if you'd like to save the combined `micropython.hex` file (MicroPython + user Python code) into the current directory (indicated using `.`), you can do so with the following command:
 
 ```bash
-python vagrant_shared/microrepl/microrepl.py
+python load_upy.py vagrant_shared/micropython/examples/conway.py .
+```
+
+#### Access the MicroPython REPL
+Once MicroPython is flashed, you will have access to the REPL on the USB CDC serial port, with baud rate 115200 (eg `picocom /dev/ttyACM0 -b 115200` on Linux, `screen /dev/tty.usbmodem* 115200` on OS X, or a tool like putty/TeraTerm on Windows).
+
+The [microrepl](https://github.com/ntoll/microrepl) tool is also bundled and easily accessible via a provided helper script. If you'd like to access the micro:bit REPL using your host computer terminal/console you can simply run the following Python (2 or 3) script:
+
+```bash
+python upy_repl.py
 ```
 
 If you are running Windows you might need to install the microbit driver, which can be found at: https://developer.mbed.org/handbook/Windows-serial-configuration
@@ -211,5 +226,6 @@ TODO
 
 
 ## Trademarks
+
 This projects is not endorsed, sponsored or associated with the BBC.
 "BBC” and “micro:bit” are trade marks of the BBC. https://microbit.org
