@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "#\n#\n# Set up micro:bit target...\n#\n#"
 set -x;
-cd vagrant_shared
+cd ~/vagrant_shared
 mkdir -p pxtworkspace
 cd pxtworkspace
 npm install pxt-microbit --no-bin-links

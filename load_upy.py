@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """uFlash Helper Script
-The MicroPython hex file is saved into the following below, which you can drop
+The MicroPython hex file is saved into the directory below, which you can drop
 into the micro:bit USB drive for flashing:
 
     vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex
@@ -23,7 +23,7 @@ import os
 import time
 from datetime import datetime, timedelta
 
-sys.path.append(os.path.join('vagrant_shared', 'uflash'))
+sys.path.append(os.path.join('vagrant_shared', 'python_helpers', 'uflash'))
 import uflash
 
 

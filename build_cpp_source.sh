@@ -2,7 +2,7 @@
 alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
 
 # Download sources
-cd vagrant_shared
+cd ~/vagrant_shared
 pretty_echo "Cloning C++ Examples..."
 git clone https://github.com/lancaster-university/microbit-samples.git cpp-samples
 pretty_echo "Cloning C++ Template for older DAL..."
