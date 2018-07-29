@@ -22,7 +22,7 @@ cd ~/vagrant_shared/micropython
 yt clean
 yt target bbc-microbit-classic-gcc-nosd
 yt up
-yt build
+make all
 { set +x; } 2> /dev/null
 echo "#\n#\n# MicroPython hex file location:"
 echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#\n#"
