@@ -25,4 +25,4 @@ yt up
 make all
 { set +x; } 2> /dev/null
 echo "#\n#\n# MicroPython hex file location:"
-echo "#   vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex\n#\n#"
+echo "#   vagrant_shared/micropython/build/firmware.hex\n#\n#"
