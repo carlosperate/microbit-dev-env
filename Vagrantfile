@@ -62,8 +62,8 @@ Vagrant.configure("2") do |config|
   SHELL
 
   # Everything below will need the GCC ARM compiler and yotta, so do not exclude
-  config.vm.provision "shell", privileged: false, path: "install_gcc-arm.sh"
-  config.vm.provision "shell", privileged: false, path: "install_yotta.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh"
 
 
   ##############################################################################
@@ -72,9 +72,9 @@ Vagrant.configure("2") do |config|
   #                                                                            #
   ##############################################################################
   # Install tool chain for PXT/MakeCode
-  config.vm.provision "shell", privileged: false, path: "install_pxt_toolchain.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_pxt.sh"
   # Install tool chain for C/C++ DAL programs (including MicroPython)
-  config.vm.provision "shell", privileged: false, path: "install_cpp_toolchain.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_cpp.sh"
 
 
   ##############################################################################
@@ -83,11 +83,11 @@ Vagrant.configure("2") do |config|
   #                                                                            #
   ##############################################################################
   # Set up the PXT workspace for micro:bit   (requires install_pxt_toolchain.sh)
-  config.vm.provision "shell", privileged: false, path: "build_pxt_workspace.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/build_pxt.sh"
   # Download and compile C++ DAL examples    (requires install_cpp_toolchain.sh)
-  config.vm.provision "shell", privileged: false, path: "build_cpp_source.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/build_cpp.sh"
   # Download and compile MicroPython         (requires install_cpp_toolchain.sh)
-  config.vm.provision "shell", privileged: false, path: "build_upy_source.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/build_upy.sh"
 
 
   config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the " \
