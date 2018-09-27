@@ -84,7 +84,7 @@ This will give you command line access to the virtual machine, allowing you to c
 
 ```bash
 cd vagrant_shared/micropython
-yt build
+make all
 ```
 
 To stop the virtual machine from running, you can use the following command on the host:
@@ -121,13 +121,13 @@ The `vagrant_shared` directory has been gitignored, so feel free to add or clone
 #### Project/code location
 There are two C/C++ projects:
 * [microbit samples](https://github.com/lancaster-university/microbit-samples): A collection of example programs using the micro:bit runtime (DAL).
-	```
-	vagrant_shared/cpp-samples/
-	```
+    ```
+    vagrant_shared/cpp-samples/
+    ```
 * [C++ template for DAL v1](https://github.com/carlosperate/microbit-dal-v1-cpp-template): Simple hello world program template using an older version of the micro:bit runtime/DAL (v1.4.x). This is the same DAL version used by MicroPython v0.9, so it's only useful for cases where you might need to test something for MicroPython development.
-	```
-	vagrant_shared/cpp-template-dal-v1/
-	```
+    ```
+    vagrant_shared/cpp-template-dal-v1/
+    ```
 
 #### Building
 Both C/C++ projects have already been built, but if you wish to recompile the examples you can access the virtual machine via SSH, and within the project directory run:
@@ -172,7 +172,7 @@ yt build
 The MicroPython hex file is saved into the following path:
 
 ```bash
-vagrant_shared/micropython/build/bbc-microbit-classic-gcc-nosd/source/microbit-micropython.hex
+vagrant_shared/micropython/build/firmware.hex
 ```
 
 #### Flashing to the micro:bit
