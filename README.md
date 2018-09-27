@@ -227,7 +227,39 @@ You can use the following commands:
 
 ### MakeCode
 
-TODO
+WIP
+
+#### Project/code location
+
+The PXT workspace is installed in the following directory:
+
+```bash
+vagrant_shared/pxtworkspace/
+```
+
+#### Launch MakeCode server
+
+To run MakeCode, open an SSH session and run:
+
+```
+cd vagrant_shared/pxtworkspace
+pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233
+```
+
+Then, to connect from your host operating system, open a browser at the address displayed in the SSH terminal with one change: Replace `0.0.0.0` with `localhost`
+
+The terminal session should have showed you a message similar to the one below, but with a different token in the URL (which you need to keep):
+```
+...
+---------------------------------------------
+
+To launch the editor, open this URL:
+http://0.0.0.0:3232/#local_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&wsport=3233
+
+---------------------------------------------
+```
+
+So in the example above, point your browser to `http://localhost:3232/#local_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&wsport=3233` instead.
 
 
 ## License
