@@ -165,10 +165,10 @@ MicroPython has already been built, but if you wish to build it again, you can o
 ```bash
 cd ~/vagrant_shared/micropython/
 yt clean
-yt build
+make all
 ```
 
-#### Built output locations
+#### Built output location
 The MicroPython hex file is saved into the following path:
 
 ```bash
@@ -183,25 +183,25 @@ To simplify the process and be able to load MicroPython with or without an addit
 To load only the new MicroPython simply run this script:
 
 ```bash
-python upy_load.py
+python upy.py flash
 ``` 
 
 To load the new MicroPython together with your Python code:
 
 ```bash
-python upy_load.py <path to your python file>
+python upy.py flash <path to your python file>
 ```
 
 For a quick test you could load any of the included MicroPython examples for the microbit:
 
 ```bash
-python upy_load.py vagrant_shared/micropython/examples/conway.py
+python upy.py flash vagrant_shared/micropython/examples/conway.py
 ```
 
 All command line arguments sent to the `upy_load.py` wrapper script are sent over to uFlash (more info about available options in the [uFlash's README](https://github.com/ntoll/uflash)). So, for example, if you'd like to save the combined `micropython.hex` file (MicroPython + user Python code) into the current directory (indicated using `.`), you can do so with the following command:
 
 ```bash
-python upy_load.py vagrant_shared/micropython/examples/conway.py .
+python upy.py flash vagrant_shared/micropython/examples/conway.py .
 ```
 
 #### Access the MicroPython REPL
@@ -210,20 +210,20 @@ Once MicroPython is flashed, you will have access to the REPL on the USB CDC ser
 The [microrepl](https://github.com/ntoll/microrepl) tool (by [Nicholas Tollervey](https://github.com/ntoll))is also bundled and easily accessible via a provided helper script. If you'd like to access the micro:bit REPL using your host computer terminal/console you can simply run the following Python (2 or 3) script:
 
 ```bash
-python upy_repl.py
+python upy.py repl
 ```
 
 If you are running Windows you might need to install the microbit driver, which can be found at: https://developer.mbed.org/handbook/Windows-serial-configuration
 
 #### Access the MicroPython file system
-MicroPython implements a simple file system inside the micro:bit flash, allowing you to read and write small files. The [microfs](https://github.com/ntoll/microfs) Python command line utility (by the great [Nicholas Tollervey](https://github.com/ntoll) again), is bundled with a wrapper script to enable easy access from the host computer.
+MicroPython implements a simple file system inside the micro:bit flash, allowing you to read and write small files. The [microfs](https://github.com/ntoll/microfs) Python command line utility (by [Nicholas Tollervey](https://github.com/ntoll)), is bundled with a wrapper script to enable easy access from the host computer.
 
 You can use the following commands:
-* List the files on the micro:bit: `python upy_fs.py ls`
-* Copy a file onto the micro:bit: `python upy_fs.py put path/to/local.txt`
-* Get a file from the micro:bit: `python upy_fs.py get remote.txt`
-* Delete a file on the micro:bit: `python upy_fs.py rm foo.txt`
-* More info in the built-in help: `python upy_fs.py --help`
+* List the files on the micro:bit: `python upy.py fs ls`
+* Copy a file onto the micro:bit: `python upy.py fs put path/to/local.txt`
+* Get a file from the micro:bit: `python upy.py fs get remote.txt`
+* Delete a file on the micro:bit: `python upy.py fs rm foo.txt`
+* More info in the built-in help: `python upy.py fs --help`
 
 ### MakeCode
 
