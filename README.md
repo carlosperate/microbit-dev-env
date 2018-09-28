@@ -38,7 +38,7 @@ You will need the following applications first:
 
 * [VirtualBox](https://www.virtualbox.org/)
 * [Vagrant](https://www.vagrantup.com/)
-* (Optional) [Python](https://www.python.org/)
+* (Optional) [Python](https://www.python.org/) (2.7 or >=3.4)
 
 ### Vagrant Project Bring-up
 
@@ -119,37 +119,31 @@ The `vagrant_shared` directory has been gitignored, so feel free to add or clone
 
 ### C/C++
 #### Project/code location
-There are two C/C++ projects:
-* [microbit samples](https://github.com/lancaster-university/microbit-samples): A collection of example programs using the micro:bit runtime (DAL).
-    ```
-    vagrant_shared/cpp-samples/
-    ```
-* [C++ template for DAL v1](https://github.com/carlosperate/microbit-dal-v1-cpp-template): Simple hello world program template using an older version of the micro:bit runtime/DAL (v1.4.x). This is the same DAL version used by MicroPython v0.9, so it's only useful for cases where you might need to test something for MicroPython development.
-    ```
-    vagrant_shared/cpp-template-dal-v1/
-    ```
+The [microbit samples](https://github.com/lancaster-university/microbit-samples) project contains a collection of example programs using the micro:bit runtime (DAL).
+The project directory can be found at:
+```
+vagrant_shared/cpp-samples/
+```
+
 
 #### Building
-Both C/C++ projects have already been built, but if you wish to recompile the examples you can access the virtual machine via SSH, and within the project directory run:
+This C/C++ project has already been built, but if you wish to recompile the examples you can access the virtual machine via SSH, and run:
 
 ```bash
+cd ~/vagrant_shared/cpp-samples/
 yt clean
 yt build
 ```
 
 The `cpp-samples/source/examples` folder contains a selection of samples demonstrating the capabilities and usage of the runtime APIs. To select a sample, simply copy the .cpp files from the relevant folder into the `cpp-samples/source/` folder. More info can be found in the [microbit samples](https://github.com/lancaster-university/microbit-samples) repository.
 
-#### Built output locations
-* microbit samples:
-    ```
-    vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex
-    ```
-* C++ template for DAL v1:
-    ```
-    vagrant_shared/cpp-template-dal-v1/build/bbc-microbit-classic-gcc/src/microbit-dalv1-template-combined.hex
-    ```
-
+#### Built output location
 To load the application into the micro:bit you will need to copy the `microbit-xxx-combined.hex` file into the micro:bit USB drive.
+
+```
+vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex
+```
+
 
 ### MicroPython
 #### Project/code location
@@ -222,7 +216,7 @@ You can use the following commands:
 * List the files on the micro:bit: `python upy.py fs ls`
 * Copy a file onto the micro:bit: `python upy.py fs put path/to/local.txt`
 * Get a file from the micro:bit: `python upy.py fs get remote.txt`
-* Delete a file on the micro:bit: `python upy.py fs rm foo.txt`
+* Delete a file on the micro:bit: `python upy.py fs rm remote.txt`
 * More info in the built-in help: `python upy.py fs --help`
 
 ### MakeCode
@@ -241,8 +235,8 @@ vagrant_shared/pxtworkspace/
 
 To run MakeCode, open an SSH session and run:
 
-```
-cd vagrant_shared/pxtworkspace
+```bash
+cd ~/vagrant_shared/pxtworkspace
 pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233
 ```
 
