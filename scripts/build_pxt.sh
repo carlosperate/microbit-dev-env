@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "#\n#\n# Set up micro:bit target...\n#\n#"
+echo "#\n#\n# Set up MakeCode micro:bit target...\n#\n#"
 set -x;
 cd ~/vagrant_shared
 mkdir -p pxtworkspace

@@ -5,7 +5,7 @@ alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -
 pretty_echo "Installing git..."
 sudo apt-get update -qq
 sudo apt-get install -y git
-pretty_echo "Installing extra Python dependencies..."
+pretty_echo "Installing extra Python dependencies for DAL..."
 sudo apt-get install -y python-setuptools python-dev python-pip python3-dev python3-pip
-pretty_echo "Installing general build tools..."
+pretty_echo "Installing general C/C++ build tools..."
 sudo apt-get install -y cmake ninja-build srecord build-essential

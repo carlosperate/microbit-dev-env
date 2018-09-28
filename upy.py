@@ -52,11 +52,12 @@ import os
 import time
 from datetime import datetime, timedelta
 
+
 # Figure out full paths to the required folders
 project_root = os.path.dirname(os.path.realpath(__file__))
 py_helpers_dir = os.path.join(project_root, 'vagrant_shared', 'python_helpers')
 
-# Add git cloned Python modules to the system path
+# Add Python modules closed in the Vagrant shared folder to the system path
 sys.path.append(os.path.join(py_helpers_dir, 'pyserial'))
 sys.path.append(os.path.join(py_helpers_dir, 'uflash'))
 sys.path.append(os.path.join(py_helpers_dir, 'microfs'))
@@ -107,8 +108,7 @@ def main():
     else:
         print('Unrecognised command, please use of the of following three:\n\n'
               'flash - To flash MicroPython with or without a Python script\n'
-              '        For example: '
-              'python upy.py flash vagrant_shared/micropython/examples/conway.py\n'
+              '        For example: python upy.py flash vagrant_shared/micropython/examples/conway.py\n'
               'fs    - To transfer files to a micro:bit running MicroPython\n'
               '        To get more info use: python upy.py fs -h\n'
               'repl  - To enter the micro:bit MicroPython REPL\n')

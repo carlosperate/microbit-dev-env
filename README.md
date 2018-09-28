@@ -2,7 +2,7 @@
 
 This repository contains a Vagrant box configured to facilitate the development of MicroPython, MakeCode, and C/C++ programs for the BBC micro:bit.
 
-It uses [Vagrant](https://www.vagrantup.com/intro/index.html), a tool to easily build and manage virtual machine environments.
+[Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
 This virtual machine is very easy to use and contains everything you need to:
 
@@ -13,7 +13,7 @@ This virtual machine is very easy to use and contains everything you need to:
 * Develop your own MakeCode packages
 * Build C/C++ applications for the micro:bit
 
-With a single command this project takes care of creating a virtual machine, installing all the development tools and dependencies required, download all the source code, compile everything, and get it ready for use.
+With a single command this project takes care of creating a virtual machine, installing all the development tools and dependencies required, download all the source code into a shared folder, compile everything, and get it ready for use.
 
 It offers a replicable development environment that is independent of your operating system, working the same way under Windows, macOS, or Linux.
 
@@ -55,7 +55,7 @@ Getting the virtual machine up and running with Vagrant is extremely easy, on th
 vagrant up
 ```
 
-This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the tool-chain, download and build all the source code for the different projects, ensuring everything is ready to develop your application in any of these platforms.
+This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the tool-chain, download and build all the source code for all the projects, ensuring everything is ready to develop your application in any of these platforms.
 
 
 ## Access the Virtual Machine
