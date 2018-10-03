@@ -29,9 +29,16 @@ Vagrant.configure("2") do |config|
     mem_size = ENV['VAGRANT_MEMORY_SIZE'].to_i
     v.memory = mem_size > 0 ? mem_size : 2048
     cpu_count = ENV['VAGRANT_CPUS'].to_i
-    v.cpus = cpu_count > 0 ? cpu_count: 1
+    v.cpus = cpu_count > 0 ? cpu_count : 1
     # Display or hide the VirtualBox GUI when booting the machine
     v.gui = false
+    # Enable USB and pass through the micro:bit
+    # It is more effective to plug-in the device when the vm is already running
+    # v.customize ["modifyvm", :id, "--usb", "on"]
+    # v.customize ["modifyvm", :id, "--usbehci", "on"]
+    # v.customize ["usbfilter", "add", "0", "--target", :id,
+    #              "--name", "BBC micro:bit",
+    #              "--vendorid", "0x0D28", "--productid", "0x0204"]
   end
 
   # Create a forwarded port mapping which allows access to a specific port.
@@ -61,10 +68,10 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y language-pack-en
   SHELL
 
+
   # Everything below will need the GCC ARM compiler and yotta, so do not exclude
   config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
   config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh"
-
 
   ##############################################################################
   #                                                                            #
@@ -75,7 +82,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_pxt.sh"
   # Install tool chain for C/C++ DAL programs (including MicroPython)
   config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_cpp.sh"
-
 
   ##############################################################################
   #                                                                            #
