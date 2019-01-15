@@ -4,8 +4,24 @@ This repository contains a Vagrant box configured to facilitate the development 
 
 [Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
-This virtual machine is very easy to use and contains everything you need to:
 
+## Table of contents:
+
+* [✨ Features](#-features)
+* [📀 Install](#-install)
+* [🚀 Getting Started](#-getting-started)
+* [🔁 Workflow](#-workflow)
+* [🏞️ Environments](#-environments)
+	* [C/C++](#cc)
+	* [MicroPython](#micropython)
+	* [MakeCode](#makecode)
+* [📑 License](#-license)
+* [⚖️ Trademarks](#-trademarks)
+
+
+## ✨ Features
+
+This virtual machine is very easy to use and contains everything you need to:
 * Build micro:bit MicroPython from source
 	* Easily load Python scripts using your own built MicroPython
 	* Easily access the MicroPython REPL
@@ -18,20 +34,7 @@ With a single command this project takes care of creating a virtual machine, ins
 It offers a replicable development environment that is independent of your operating system, working the same way under Windows, macOS, or Linux.
 
 
-## Table of contents:
-
-* [Install](#install)
-* [Access the virtual machine](#access-the-virtual-machine)
-* [Workflow](#workflow)
-* [Environments](#environments)
-	* [C/C++](#cc)
-	* [MicroPython](#micropython)
-	* [MakeCode](#makecode)
-* [License](#license)
-* [Trademarks](#trademarks)
-
-
-## Install
+## 📀 Install
 
 ### Prerequisites
 You will need the following applications first:
@@ -58,7 +61,7 @@ vagrant up
 This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the tool-chain, download and build all the source code for all the projects, ensuring everything is ready to develop your application in any of these platforms.
 
 
-## Access the Virtual Machine
+## 🚀 Getting Started
 
 First, start-up the virtual machine:
 ```bash
@@ -96,7 +99,7 @@ vagrant halt
 More information can be found in the [Vagrant documentation](https://www.vagrantup.com/docs/).
 
 
-## Workflow
+## 🔁 Workflow
 
 The general workflow concept is to have one folder that is accessible by both the host operating system (your computer), and the virtual machine.
 
@@ -115,7 +118,7 @@ Remember! If you delete something within the virtual machine `~/vagrant_shared/`
 The `vagrant_shared` directory has been gitignored, so feel free to add or clone your own repositories there without interference from this one.
 
 
-## Environments
+## 🏞️ Environments
 
 ### C/C++
 #### Project/code location
@@ -256,12 +259,12 @@ http://0.0.0.0:3232/#local_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&wsport=323
 So in the example above, point your browser to `http://localhost:3232/#local_token=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&wsport=3233` instead.
 
 
-## License
+## 📑 License
 
 [MIT](LICENSE)
 
 
-## Trademarks
+## ⚖️ Trademarks
 
 This projects is not endorsed, sponsored or associated with the BBC.
 "BBC” and “micro:bit” are trade marks of the BBC. https://microbit.org
