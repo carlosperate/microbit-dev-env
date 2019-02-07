@@ -5,16 +5,16 @@ This repository contains a Vagrant box configured to facilitate the development 
 [Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
 
-## Table of contents:
+## 🗂️ Table of contents:
 
 * [✨ Features](#-features)
 * [📀 Install](#-install)
 * [🚀 Getting Started](#-getting-started)
 * [🔁 Workflow](#-workflow)
 * [🏞️ Environments](#-environments)
-	* [C/C++](#cc)
-	* [MicroPython](#micropython)
-	* [MakeCode](#makecode)
+	* [©️ C/C++](#cc)
+	* [🐍 MicroPython](#micropython)
+	* [Ⓜ️ MakeCode](#makecode)
 * [📑 License](#-license)
 * [⚖️ Trademarks](#-trademarks)
 
@@ -120,7 +120,7 @@ The `vagrant_shared` directory has been gitignored, so feel free to add or clone
 
 ## 🏞️ Environments
 
-### C/C++
+### ©️ C/C++
 #### Project/code location
 The [microbit samples](https://github.com/lancaster-university/microbit-samples) project contains a collection of example programs using the micro:bit runtime (DAL).
 The project directory can be found at:
@@ -148,7 +148,7 @@ vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-sample
 ```
 
 
-### MicroPython
+### 🐍 MicroPython
 #### Project/code location
 The MicroPython source code can be found in:
 
@@ -222,7 +222,7 @@ You can use the following commands:
 * Delete a file on the micro:bit: `python upy.py fs rm remote.txt`
 * More info in the built-in help: `python upy.py fs --help`
 
-### MakeCode
+### Ⓜ️ MakeCode
 
 WIP
 
