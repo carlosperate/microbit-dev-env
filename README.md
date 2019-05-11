@@ -11,12 +11,12 @@ This repository contains a Vagrant box configured to facilitate the development 
 * [📀 Install](#-install)
 * [🚀 Getting Started](#-getting-started)
 * [🔁 Workflow](#-workflow)
-* [🏞️ Environments](#-environments)
-	* [©️ C/C++](#cc)
-	* [🐍 MicroPython](#micropython)
-	* [Ⓜ️ MakeCode](#makecode)
+* [🏞️ Environments](#%EF%B8%8F-environments)
+	* [©️ C/C++](#%EF%B8%8F-cc)
+	* [🐍 MicroPython](#-micropython)
+	* [Ⓜ️ MakeCode](#ⓜ%EF%B8%8F-makecode)
 * [📑 License](#-license)
-* [⚖️ Trademarks](#-trademarks)
+* [⚖️ Trademarks](#%EF%B8%8F-trademarks)
 
 
 ## ✨ Features
