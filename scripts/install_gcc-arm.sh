@@ -8,4 +8,5 @@ sudo add-apt-repository -y ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update -qq
 sudo apt-get install -y gcc-arm-embedded
 pretty_echo "GCC: Checking GCC ARM compiler version..."
+which arm-none-eabi-gcc
 arm-none-eabi-gcc --version
