@@ -3,11 +3,11 @@ alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -
 
 # Download sources
 cd ~/vagrant_shared
-pretty_echo "Cloning C++ Examples..."
+pretty_echo "DAL: Cloning C++ Examples..."
 git clone https://github.com/lancaster-university/microbit-samples.git cpp-samples
 
 # Build it
-pretty_echo "Building C++ examples using DAL..."
+pretty_echo "DAL: Building C++ examples using DAL..."
 cd cpp-samples
 yt clean
 yt target bbc-microbit-classic-gcc
