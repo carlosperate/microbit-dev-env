@@ -8,7 +8,7 @@ git clone https://github.com/lancaster-university/microbit-samples.git cpp-sampl
 
 # Build it
 pretty_echo "DAL: Building C++ examples using DAL..."
-cd cpp-samples
+cd ~/vagrant_shared/cpp-samples
 yt clean
 yt target bbc-microbit-classic-gcc
 yt build
