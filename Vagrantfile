@@ -72,16 +72,7 @@ Vagrant.configure("2") do |config|
   # Everything below will need the GCC ARM compiler and yotta, so do not exclude
   config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
   config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh"
-
-  ##############################################################################
-  #                                                                            #
-  # Comment in/out the lines below to enable/disable installing tool chains.   #
-  #                                                                            #
-  ##############################################################################
-  # Install tool chain for PXT/MakeCode
-  config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_pxt.sh"
-  # Install tool chain for C/C++ DAL programs (including MicroPython)
-  config.vm.provision "shell", privileged: false, path: "scripts/install_toolchain_cpp.sh"
+  config.vm.provision "shell", privileged: false, path: "scripts/install_build-tools.sh"
 
   ##############################################################################
   #                                                                            #

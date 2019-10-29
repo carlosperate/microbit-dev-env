@@ -1,6 +1,20 @@
 #!/bin/sh
-echo "#\n#\n# Set up MakeCode micro:bit target...\n#\n#"
-set -x;
+alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
+
+# Needs GCC-ARM and Yotta to be installed as well, Vagrant file should have installed this already
+pretty_echo "PXT: Removing present installation of node and npm..."
+sudo apt-get update -qq
+sudo apt-get remove -y nodejs npm
+pretty_echo "PXT: Installing node.js and npm..."
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+pretty_echo "PXT: Installing PXT..."
+sudo npm install -g pxt
+pretty_echo "PXT: Installing PXT build dependencies..."
+sudo npm install -g jake
+sudo npm install -g typings
+
+pretty_echo "PXT: Set up MakeCode micro:bit target..."
 cd ~/vagrant_shared
 mkdir -p pxtworkspace
 cd pxtworkspace
