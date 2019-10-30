@@ -27,7 +27,7 @@ This virtual machine is very easy to use and contains everything you need to:
 	* Easily access the MicroPython REPL
 * Run a local version of MakeCode/PXT
 * Develop your own MakeCode packages
-* Build C/C++ applications for the micro:bit
+* Build C/C++ applications for the micro:bit using the DAL (micro:bit runtime)
 
 With a single command this project takes care of creating a virtual machine, installing all the development tools and dependencies required, download all the source code into a shared folder, compile everything, and get it ready for use.
 
@@ -58,7 +58,17 @@ Getting the virtual machine up and running with Vagrant is extremely easy, on th
 vagrant up
 ```
 
-This will download an Ubuntu 16.04 64 bit virtual box image, so it might take a while depending on your internet connection. It will also install the tool-chain, download and build all the source code for all the projects, ensuring everything is ready to develop your application in any of these platforms.
+This will first ask you what project would you like to build. Selecting only the project you are interested will significantly reduce the bring up time.
+
+```
+> vagrant up 
+Build MakeCode? (y/n): y
+Build DAL? (y/n): y
+Build MicroPython? (y/n): y
+```
+
+After the questions have been answered, it will download an Ubuntu 16.04 64-bit Virtual Box image, so it might take a while depending on your internet connection.
+It will also install the build tool-chain, download and build all the source code for the selected projects, ensuring everything is ready to develop your application in any of these platforms.
 
 
 ## 🚀 Getting Started
@@ -67,6 +77,8 @@ First, start-up the virtual machine:
 ```bash
 vagrant up
 ```
+
+If this is the first time you've run this command it will ask you which projects you would like to build. Enter `y` to select any of the prompted projects.
 
 You can now SSH into the virtual machine with Vagrant itself:
 

@@ -1,6 +1,28 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Before bringing up Vagrant ask the user what they want to build
+pxt = dal = upy = false
+if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/microbit-vg/virtualbox/*").empty? || ARGV[1] == '--provision')
+  print "Build MakeCode? (y/n): "
+  response = STDIN.gets.chomp
+  if response.start_with?('y')
+    pxt = true
+  end
+  print "Build DAL? (y/n): "
+  response = STDIN.gets.chomp
+  if response.start_with?('y')
+    dal = true
+  end
+  print "Build MicroPython? (y/n): "
+  response = STDIN.gets.chomp
+  if response.start_with?('y')
+    upy = true
+  end
+  print "\n\n"
+end
+
+
 Vagrant.configure("2") do |config|
   # Building from Ubuntu 16.04 64 bit
   config.vm.box = "ubuntu/xenial64"
@@ -68,23 +90,17 @@ Vagrant.configure("2") do |config|
     sudo apt-get install -y language-pack-en
   SHELL
 
-
-  # Everything below will need the GCC ARM compiler and yotta, so do not exclude
+  # Every optional build will need the GCC ARM compiler, yotta, and build tools
   config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
   config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh"
   config.vm.provision "shell", privileged: false, path: "scripts/install_build-tools.sh"
 
-  ##############################################################################
-  #                                                                            #
-  # Comment in/out the lines below to download & build individual environments #
-  #                                                                            #
-  ##############################################################################
-  # Set up the PXT workspace for micro:bit   (requires install_toolchain_pxt.sh)
-  config.vm.provision "shell", privileged: false, path: "scripts/build_pxt.sh"
-  # Download and compile C++ DAL examples    (requires install_toolchain_cpp.sh)
-  config.vm.provision "shell", privileged: false, path: "scripts/build_cpp.sh"
-  # Download and compile MicroPython         (requires install_toolchain_cpp.sh)
-  config.vm.provision "shell", privileged: false, path: "scripts/build_upy.sh"
+  # Install MakeCode and set up the workspace for micro:bit
+  if pxt then config.vm.provision "shell", privileged: false, path: "scripts/build_pxt.sh" end
+  # Download and compile C++ DAL examples
+  if dal then config.vm.provision "shell", privileged: false, path: "scripts/build_cpp.sh" end
+  # Download and compile MicroPython
+  if upy then config.vm.provision "shell", privileged: false, path: "scripts/build_upy.sh" end
 
 
   config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the " \
