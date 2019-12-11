@@ -55,16 +55,16 @@ cd microbit-dev-env
 Getting the virtual machine up and running with Vagrant is extremely easy, on the Command Line Interface just run:
 
 ```bash
-vagrant up
+vagrant up --provision
 ```
 
 This will first ask you what project would you like to build. Selecting only the project you are interested will significantly reduce the bring up time.
 
 ```
-> vagrant up 
-Build MakeCode? (y/n): y
-Build DAL? (y/n): y
-Build MicroPython? (y/n): y
+$ vagrant up --provision
+Build MakeCode? (y/n): y ✅
+Build DAL? (y/n): y ✅
+Build MicroPython? (y/n): y ✅
 ```
 
 After the questions have been answered, it will download an Ubuntu 16.04 64-bit Virtual Box image, so it might take a while depending on your internet connection.

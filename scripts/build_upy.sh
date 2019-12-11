@@ -24,5 +24,4 @@ yt target bbc-microbit-classic-gcc-nosd
 yt up
 make all
 { set +x; } 2> /dev/null
-echo "#\n#\n# MicroPython hex file location:"
-echo "#   vagrant_shared/micropython/build/firmware.hex\n#\n#"
+pretty_echo "Upy: MicroPython hex file location:\n#    vagrant_shared/micropython/build/firmware.hex"

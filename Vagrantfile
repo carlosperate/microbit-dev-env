@@ -5,17 +5,20 @@
 pxt = dal = upy = false
 if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/microbit-vg/virtualbox/*").empty? || ARGV[1] == '--provision')
   print "Build MakeCode? (y/n): "
-  response = STDIN.gets.chomp
+  response = STDIN.getch
+  print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     pxt = true
   end
-  print "Build DAL? (y/n): "
-  response = STDIN.gets.chomp
+  print "Build C++ samples (DAL)? (y/n): "
+  response = STDIN.getch
+  print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     dal = true
   end
   print "Build MicroPython? (y/n): "
-  response = STDIN.gets.chomp
+  response = STDIN.getch
+  print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     upy = true
   end
@@ -103,7 +106,6 @@ Vagrant.configure("2") do |config|
   if upy then config.vm.provision "shell", privileged: false, path: "scripts/build_upy.sh" end
 
 
-  config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the " \
-                              "virtual machine.\n\t" \
-                              "Username: vagrant\n\tPassword: vagrant"
+  config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the virtual machine." \
+                              "\n\tUsername: vagrant\n\tPassword: vagrant"
 end
