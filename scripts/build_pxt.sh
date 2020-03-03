@@ -6,19 +6,25 @@ pretty_echo "PXT: Removing present installation of node and npm..."
 sudo apt-get update -qq
 sudo apt-get remove -y nodejs npm
 pretty_echo "PXT: Installing node.js and npm..."
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
-pretty_echo "PXT: Installing PXT..."
+
+pretty_echo "PXT: Global install of the PXT cli tool..."
 sudo npm install -g pxt
-pretty_echo "PXT: Installing PXT build dependencies..."
-sudo npm install -g jake
-sudo npm install -g typings
+# There was an issue with old versions of npm where the cache folder contains root-owned files
+sudo chown -R 1000:1000 "/home/vagrant/.npm"
+
+# pretty_echo "PXT: Set up MakeCode stable v5..."
+# git clone https://github.com/microsoft/pxt.git --branch v5.15.17 --single-branch --depth 1
+# cd ~/vagrant_shared/pxtworkspace/pxt
+# npm install
+# npm run build
+# sudo npm install -g pxt
 
 pretty_echo "PXT: Set up MakeCode micro:bit target..."
 cd ~/vagrant_shared
 mkdir -p pxtworkspace
 cd ~/vagrant_shared/pxtworkspace
-npm install pxt-microbit --no-bin-links
 pxt target microbit
 { set +x; } 2> /dev/null
 echo "#\n#\n# PXT workspace set up at vagrant_shared/pxtworkspace, to run server:"
