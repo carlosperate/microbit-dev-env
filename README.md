@@ -255,11 +255,11 @@ cd ~/vagrant_shared/pxtworkspace
 pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233
 ```
 
-Then, from your host operating system open a browser and go to the address displayed in the SSH terminal with one change: Replace `0.0.0.0` with `localhost`
+Then, from your host operating system open a browser and go to the address displayed in the SSH terminal with one **important change**: Replace `0.0.0.0` with `localhost`.
 
-The terminal session should have showed you a message similar to the one below, but with a different token in the URL (which you need to keep):
+The terminal session should have showed you a message similar to the one below, but with a different token in the URL, which you need to keep:
+
 ```
-...
 ---------------------------------------------
 
 To launch the editor, open this URL:

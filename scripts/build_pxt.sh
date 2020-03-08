@@ -23,11 +23,19 @@ sudo chown -R 1000:1000 "/home/vagrant/.npm"
 
 pretty_echo "PXT: Set up MakeCode micro:bit target..."
 cd ~/vagrant_shared
-mkdir -p pxtworkspace
+mkdir -p pxtworkspace/projects
 cd ~/vagrant_shared/pxtworkspace
 pxt target microbit
+
+pretty_echo "PXT: Set up example extension..."
+cd ~/vagrant_shared/pxtworkspace/projects
+git clone https://github.com/carlosperate/pxt-banana.git
+git clone --single-branch --branch local-project https://github.com/carlosperate/pxt-banana.git project-with-extension
+
+
 { set +x; } 2> /dev/null
 echo "#\n#\n# PXT workspace set up at vagrant_shared/pxtworkspace, to run server:"
-echo "#   pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233"
+echo "#   \$ cd ~/vagrant_shared/pxtworkspace/"
+echo "#   \$ pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233"
 echo "# Then connect from host machine at http://localhost:3232 with the local"
 echo "# token shown on the terminal.\n#\n#"
