@@ -13,6 +13,7 @@ pretty_echo "PXT: Global install of the PXT cli tool..."
 sudo npm install -g pxt
 # There was an issue with old versions of npm where the cache folder contains root-owned files
 sudo chown -R 1000:1000 "/home/vagrant/.npm"
+sudo chown -R $USER:$(id -gn $USER) /home/vagrant/.config
 
 # pretty_echo "PXT: Set up MakeCode stable v5..."
 # git clone https://github.com/microsoft/pxt.git --branch v5.15.17 --single-branch --depth 1
