@@ -9,4 +9,4 @@ sudo -H pip install -U pip
 pretty_echo "Yotta: Installing yotta..."
 # FIXME There is an issue with Yotta so we need to install from a commit
 # https://github.com/ARMmbed/yotta/pull/857
-sudo -H pip install git+git://github.com/ARMmbed/yotta.git@047cff288c3f7fe520c391fc61805ea3c8dafebc
+sudo -H pip install yotta==0.20.5
