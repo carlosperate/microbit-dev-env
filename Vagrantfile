@@ -45,10 +45,13 @@ end
 
 
 Vagrant.configure("2") do |config|
-  # Building from Ubuntu 16.04 64 bit
-  config.vm.box = "ubuntu/xenial64"
+  # Building from Ubuntu 18.04 64 bit
+  config.vm.box = "ubuntu/bionic64"
 
-  # This Ubuntu image creates a ubuntu-xenial-16.04-cloudimg-console.log file
+  # Forwarding SSH Agents
+  config.ssh.forward_agent = true
+
+  # This Ubuntu image creates a ubuntu-bionic-18.04-cloudimg-console.log file
   #   https://betacloud.io/get-rid-of-ubuntu-xenial-16-04-cloudimg-console-log/
   config.vm.provider "virtualbox" do |vb|
     vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
@@ -105,11 +108,6 @@ Vagrant.configure("2") do |config|
 
   # Example to copy file from repository root to shared folder in VM
   # config.vm.provision "file", source: "file.x", destination: "~/vagrant_shared/file.x"
-
-  # Fix to an issue with setting up locales in the Ubuntu VM
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    sudo apt-get install -y language-pack-en
-  SHELL
 
   # Every optional build will need the GCC ARM compiler, yotta, and build tools
   config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
