@@ -3,10 +3,10 @@ alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -
 
 pretty_echo "Yotta: Installing yotta dependencies..."
 sudo apt-get update -qq
-sudo apt-get install -y python-setuptools python-dev python-pip cmake build-essential ninja-build libffi-dev libssl-dev libreadline-dev libyaml-dev
-pretty_echo "Yotta: Updating pip..."
-sudo -H pip install -U pip
+sudo apt-get install -y python3-setuptools python3-dev python3-pip python3-venv cmake build-essential ninja-build libffi-dev libssl-dev libreadline-dev libyaml-dev
+pretty_echo "Yotta: Updating pip to a known version..."
+sudo -H pip3 install -U pip==19.3.1
+sudo -H pip3 install pipx
+pipx ensurepath
 pretty_echo "Yotta: Installing yotta..."
-# FIXME There is an issue with Yotta so we need to install from a commit
-# https://github.com/ARMmbed/yotta/pull/857
-sudo -H pip install yotta==0.20.5
+pipx install yotta==0.20.5
