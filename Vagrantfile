@@ -4,7 +4,7 @@
 # Before bringing up Vagrant ask the user what they want to build
 pxt = false
 upy1 = upy2 = false
-dal = false
+dal = codal = false
 if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/microbit-vg/virtualbox/*").empty? || ARGV[1] == '--provision')
   print "Build MakeCode? (y/n): "
   response = STDIN.getch
@@ -17,6 +17,12 @@ if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/mi
   print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     dal = true
+  end
+  print "Build CODAL? (y/n): "
+  response = STDIN.getch
+  print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
+  if response.start_with?('y')
+    codal = true
   end
   print "Build MicroPython V1? (y/n): "
   response = STDIN.getch
@@ -113,6 +119,8 @@ Vagrant.configure("2") do |config|
   # Download and compile MicroPython
   if upy1 then config.vm.provision "shell", privileged: false, path: "scripts/build_upy1.sh" end
   if upy2 then config.vm.provision "shell", privileged: false, path: "scripts/build_upy2.sh" end
+  # Download and compile C++ CODAL
+  if codal then config.vm.provision "shell", privileged: false, path: "scripts/build_codal.sh" end
 
 
   config.vm.post_up_message = "All done! execute 'vagrant ssh' to enter the virtual machine." \
