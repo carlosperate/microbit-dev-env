@@ -4,6 +4,9 @@ This repository contains a Vagrant box configured to facilitate the development 
 
 [Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
+If you prefer to use Docker this other project might interest you:
+https://github.com/carlosperate/docker-microbit-toolchain
+
 
 ## 🗂️ Table of contents:
 
@@ -12,9 +15,11 @@ This repository contains a Vagrant box configured to facilitate the development 
 * [🚀 Getting Started](#-getting-started)
 * [🔁 Workflow](#-workflow)
 * [🏞️ Environments](#%EF%B8%8F-environments)
-	* [©️ C/C++](#%EF%B8%8F-cc)
-	* [🐍 MicroPython](#-micropython)
-	* [Ⓜ️ MakeCode](#ⓜ%EF%B8%8F-makecode)
+    * [©️ C/C++ DAL (V1)](#%EF%B8%8F-cc)
+    * [©️ C/C++ CODAL (V2)](#%EF%B8%8F-cc)
+    * [🐍 MicroPython V1](#-micropython)
+    * [🐍 MicroPython V2](#-micropython)
+    * [Ⓜ️ MakeCode](#ⓜ%EF%B8%8F-makecode)
 * [📑 License](#-license)
 * [⚖️ Trademarks](#%EF%B8%8F-trademarks)
 
@@ -132,7 +137,7 @@ The `vagrant_shared` directory has been gitignored, so feel free to add or clone
 
 ## 🏞️ Environments
 
-### ©️ C/C++
+### ©️ C/C++ DAL (V1)
 #### Project/code location
 The [microbit samples](https://github.com/lancaster-university/microbit-samples) project contains a collection of example programs using the micro:bit runtime (DAL).
 The project directory can be found at:
@@ -159,8 +164,33 @@ To load the application into the micro:bit you will need to copy the `microbit-x
 vagrant_shared/cpp-samples/build/bbc-microbit-classic-gcc/source/microbit-samples-combined.hex
 ```
 
+### ©️ C/C++ CODAL (V2)
+#### Project/code location
+The [microbit samples](https://github.com/lancaster-university/microbit-v2-samples) project contains a collection of example programs using the micro:bit runtime for V2 (CODAL).
+The project directory can be found at:
+```
+vagrant_shared/microbit-v2-samples/
+```
 
-### 🐍 MicroPython
+
+#### Building
+This C/C++ project has already been built, but if you wish to recompile the examples you can access the virtual machine via SSH, and run:
+
+```bash
+cd ~/vagrant_shared/microbit-v2-samples/
+python3 build.py
+```
+
+The `microbit-v2-samples/source/samples/` folder contains a selection of samples demonstrating the capabilities and usage of the runtime APIs. To select a sample, simply copy the .cpp files from the relevant folder into the `cpp-samples/source/` folder. More info can be found in the [micro:bit V2 samples](https://github.com/lancaster-university/microbit-v2-samples) repository.
+
+#### Built output location
+To load the application into the micro:bit you will need to copy the `MICROBIT.hex` file into the micro:bit USB drive.
+
+```
+vagrant_shared/microbit-v2-samples/MICROBIT.hex
+```
+
+### 🐍 MicroPython V1
 #### Project/code location
 The MicroPython source code can be found in:
 
@@ -234,6 +264,29 @@ You can use the following commands:
 * Delete a file on the micro:bit: `python upy.py fs rm remote.txt`
 * More info in the built-in help: `python upy.py fs --help`
 
+### 🐍 MicroPython V2
+#### Project/code location
+The MicroPython source code can be found in:
+
+```bash
+vagrant_shared/micropython-microbit-v2/
+```
+
+#### Building
+MicroPython has already been built, but if you wish to build it again, you can open an SSH session and run:
+
+```bash
+cd ~/vagrant_shared/micropython-microbit-v2/src
+make
+```
+
+#### Built output location
+The MicroPython hex file is saved into the following path:
+
+```bash
+vagrant_shared/micropython-microbit-v2/src/MICROBIT.hex
+```
+
 ### Ⓜ️ MakeCode
 
 WIP
@@ -255,7 +308,7 @@ cd ~/vagrant_shared/pxtworkspace
 pxt serve --no-browser --no-serial --hostname 0.0.0.0 --port 3232 --wsport 3233
 ```
 
-Then, from your host operating system open a browser and go to the address displayed in the SSH terminal with one **important change**: Replace `0.0.0.0` with `localhost`.
+**VERY IMPORTANT**: From your host OS open a browser and go to the address displayed in the SSH terminal with one **CHANGE**: Replace `0.0.0.0` with `localhost`.
 
 The terminal session should have showed you a message similar to the one below, but with a different token in the URL, which you need to keep:
 
@@ -278,5 +331,5 @@ So in the example above, point your browser to `http://localhost:3232/#local_tok
 
 ## ⚖️ Trademarks
 
-This projects is not endorsed, sponsored or associated with the BBC.
+This projects is not endorsed, sponsored or associated with the BBC or the Micro:bit Educational Foundation.
 "BBC” and “micro:bit” are trade marks of the BBC. https://microbit.org
