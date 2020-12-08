@@ -5,18 +5,21 @@
 pxt = false
 upy1 = upy2 = false
 dal = codal = false
+yotta = false
 if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/microbit-vg/virtualbox/*").empty? || ARGV[1] == '--provision')
   print "Build MakeCode? (y/n): "
   response = STDIN.getch
   print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     pxt = true
+    yotta = true
   end
   print "Build C++ samples (DAL)? (y/n): "
   response = STDIN.getch
   print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     dal = true
+    yotta = true
   end
   print "Build CODAL? (y/n): "
   response = STDIN.getch
@@ -29,6 +32,7 @@ if ARGV[0] == 'up' and (Dir.glob("#{File.dirname(__FILE__)}/.vagrant/machines/mi
   print response + (response.start_with?('y') ? " ✅\n" : " ❌\n")
   if response.start_with?('y')
     upy1 = true
+    yotta = true
   end
   print "Build MicroPython V2? (y/n): "
   response = STDIN.getch
@@ -109,7 +113,7 @@ Vagrant.configure("2") do |config|
 
   # Every optional build will need the GCC ARM compiler, yotta, and build tools
   config.vm.provision "shell", privileged: false, path: "scripts/install_gcc-arm.sh"
-  config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh"
+  if yotta then config.vm.provision "shell", privileged: false, path: "scripts/install_yotta.sh" end
   config.vm.provision "shell", privileged: false, path: "scripts/install_build-tools.sh"
 
   # Install MakeCode and set up the workspace for micro:bit
