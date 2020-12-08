@@ -1,5 +1,6 @@
 #!/bin/sh
-alias pretty_echo='{ set +x; } 2> /dev/null; f(){ echo "#\n#\n# $1\n#\n#"; set -x; }; f'
+alias pretty_echo='{ set +x; } 2> /dev/null; f(){ tput setaf 3; echo -e "\n#\n#\n# $1\n#\n#"; tput sgr0; set -x; }; f'
+alias error_echo='{ set +x; } 2> /dev/null; f(){ tput setaf 1; echo -e "\n#\n#\n# $1\n#\n#" >&2; tput sgr0; set -x; }; f'
 
 # Download sources
 cd ~/vagrant_shared
@@ -23,5 +24,8 @@ yt clean
 yt target bbc-microbit-classic-gcc-nosd
 yt up
 make all
-{ set +x; } 2> /dev/null
-pretty_echo "Upy: MicroPython hex file location:\n#    vagrant_shared/micropython/build/firmware.hex"
+if [ "$?" -eq "0" ]; then
+  pretty_echo "Upy: MicroPython hex file location:\n#    vagrant_shared/micropython/build/firmware.hex"
+else
+  error_echo "Upy: BUILD FAILED!"
+fi
