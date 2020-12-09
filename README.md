@@ -5,7 +5,7 @@ This repository contains a Vagrant box configured to facilitate the development 
 [Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
 If you prefer to use Docker this other project might interest you:
-https://github.com/carlosperate/docker-microbit-toolchain
+[docker micro:bit toolchain](https://github.com/carlosperate/docker-microbit-toolchain)
 
 
 ## 🗂️ Table of contents:
@@ -15,10 +15,10 @@ https://github.com/carlosperate/docker-microbit-toolchain
 * [🚀 Getting Started](#-getting-started)
 * [🔁 Workflow](#-workflow)
 * [🏞️ Environments](#%EF%B8%8F-environments)
-    * [©️ C/C++ DAL (V1)](#%EF%B8%8F-cc)
-    * [©️ C/C++ CODAL (V2)](#%EF%B8%8F-cc)
-    * [🐍 MicroPython V1](#-micropython)
-    * [🐍 MicroPython V2](#-micropython)
+    * [©️ C/C++ DAL (V1)](#%EF%B8%8F-cc-dal-v1)
+    * [©️ C/C++ CODAL (V2)](#%EF%B8%8F-cc-codal-v2)
+    * [🐍 MicroPython V1](#-micropython-v1)
+    * [🐍 MicroPython V2](#-micropython-v2)
     * [Ⓜ️ MakeCode](#ⓜ%EF%B8%8F-makecode)
 * [📑 License](#-license)
 * [⚖️ Trademarks](#%EF%B8%8F-trademarks)
@@ -68,8 +68,10 @@ This will first ask you what project would you like to build. Selecting only the
 ```
 $ vagrant up --provision
 Build MakeCode? (y/n): y ✅
-Build DAL? (y/n): y ✅
-Build MicroPython? (y/n): y ✅
+Build C++ samples (DAL)? (y/n): y ✅
+Build CODAL? (y/n): y ✅
+Build MicroPython V1? (y/n): y ✅
+Build MicroPython V2? (y/n): y ✅
 ```
 
 After the questions have been answered, it will download an Ubuntu 16.04 64-bit Virtual Box image, so it might take a while depending on your internet connection.
