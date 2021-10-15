@@ -4,8 +4,8 @@ This repository contains a Vagrant box configured to facilitate the development 
 
 [Vagrant](https://www.vagrantup.com/intro/index.html) is a tool to easily build and manage virtual machine environments.
 
-If you prefer to use Docker this other project might interest you:
-[docker micro:bit toolchain](https://github.com/carlosperate/docker-microbit-toolchain)
+If you prefer to use 🐳 Docker this other project might interest you:
+[Docker micro:bit Toolchain](https://github.com/carlosperate/docker-microbit-toolchain)
 
 
 ## 🗂️ Table of contents:
