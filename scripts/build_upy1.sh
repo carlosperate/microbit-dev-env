@@ -21,7 +21,7 @@ git clone https://github.com/ntoll/microfs.git
 pretty_echo "Upy: Building MicroPython..."
 cd ~/vagrant_shared/micropython
 yt clean
-yt target bbc-microbit-classic-gcc-nosd
+yotta target bbc-microbit-classic-gcc-nosd@https://github.com/lancaster-university/yotta-target-bbc-microbit-classic-gcc-nosd
 yt up
 make all
 if [ "$?" -eq "0" ]; then
