@@ -10,7 +10,6 @@ git clone https://github.com/lancaster-university/microbit-samples.git cpp-sampl
 pretty_echo "DAL: Building C++ examples using DAL..."
 cd ~/vagrant_shared/cpp-samples
 yt clean
-yt target bbc-microbit-classic-gcc
 yt build
 { set +x; } 2> /dev/null
 echo "#\n# C++ hello world hex file location:"
